@@ -1,3 +1,0 @@
-cd..
-startBots.bat
-exit
