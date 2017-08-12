@@ -1,4 +1,5 @@
 @echo off
-call zLOAD.bat
+git fetch
+git pull
 cd Shiro
 RUN.vbs
