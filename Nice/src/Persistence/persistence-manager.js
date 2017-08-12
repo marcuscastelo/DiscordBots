@@ -5,7 +5,7 @@ import Settings from '../../settings.json'
 
 import Logger from '../logger.js'
 
-const filename = './src/Persistence/persistence.json'
+const filename = '../persistence.json'
 
 
 const _guildData = {}

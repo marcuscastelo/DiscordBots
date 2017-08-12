@@ -1,0 +1,26 @@
+{
+	"264477926999719939": {
+		"id": "264477926999719939",
+		"name": "Vila Oculta da Folha",
+		"playlist": [],
+		"playlist_src": [],
+		"saved_playlists": [],
+		"volume": 0.5,
+		"shuffle": false,
+		"loop": 0,
+		"actualIndex": 0,
+		"prefix": ","
+	},
+	"338148155097088022": {
+		"id": "338148155097088022",
+		"name": "Dev",
+		"playlist": [],
+		"playlist_src": [],
+		"saved_playlists": [],
+		"volume": 0.5,
+		"shuffle": false,
+		"loop": 0,
+		"actualIndex": 0,
+		"prefix": ","
+	}
+}

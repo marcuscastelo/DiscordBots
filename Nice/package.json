@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "babel": "babel-node src/app.js",
-    "babel-debug": "nodemon --exec babel-node src/app.js --inspect"
+    "babel": "cd src && babel-node app.js",
+    "babel-debug": "cd src && nodemon --exec babel-node app.js --inspect"
   },
   "keywords": [],
   "author": "",

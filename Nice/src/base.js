@@ -22,7 +22,7 @@ export default class DiscordClient{
             let v = new volume()
             v.setVolume(vol)
             Logger.log('volume anuncio = '+vol,5)
-            fs.createReadStream('ready.mp3').pipe(new Decoder()).pipe(v).pipe(new Speaker())
+            fs.createReadStream('../ready.mp3').pipe(new Decoder()).pipe(v).pipe(new Speaker())
             Logger.log('[Sucesso] Bot funcional',0)
         })
         Logger.log('Definindo evento onMessage', 3)
