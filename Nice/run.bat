@@ -2,5 +2,5 @@
 if exist "shutdown" (del shutdown)
 :loop
 if exist "shutdown" (exit)
-npm run babel
-goto loop
+call npm run babel
+if errorlevel 1 (goto loop)
