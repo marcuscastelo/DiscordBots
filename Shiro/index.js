@@ -1,0 +1,50 @@
+const Discord = require('discord.js')
+const child_process = require('child_process')
+const bot = new Discord.Client()
+
+
+function isBotOffline(id){
+    return new Promise((res,rej)=>{
+        bot.fetchUser(id).then(user=>{
+            if (user.presence.status!='online'){
+                res(user.username)
+            }
+            else rej(user.username)
+        })
+    })
+}
+
+function startBot(name){
+    console.log('starting '+name)
+    process.chdir('..\\'+name+'\\')
+    child_process.spawn('run.bat')
+}
+
+bot.on('ready',()=>{
+
+    let ids = [
+        '325429979456339969', //Nice
+        //'335964774229868544', //Megumin
+        '265633187797925899', //Kurumi
+        '295632149367750657', //Hikari
+        '266042469009981442'  //Chelsea
+    ]
+
+    
+    let x = ()=>{
+        for (id of ids){
+            isBotOffline(id).then(username=>{
+                startBot(username)
+            }).catch((username)=>{
+                console.log(username+': online')
+            })
+        }
+    }
+    x()
+    setInterval(x,Math.random()*30000+10000)
+    
+
+    console.log('ok')
+})
+
+bot.login('Mjk3MDkyMzYzNDM4OTE1NTg0.DGvvhw.B2aCcBK5X5g2hjGRHS98kW61zm8')

@@ -1,0 +1,2 @@
+shutdown.bat
+startbots.bat

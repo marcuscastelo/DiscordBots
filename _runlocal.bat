@@ -1,0 +1,2 @@
+cd Shiro
+Run.vbs

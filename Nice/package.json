@@ -1,0 +1,25 @@
+{
+  "name": "Nice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "babel": "babel-node src/app.js",
+    "babel-debug": "nodemon --exec babel-node src/app.js --inspect"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "get-video-duration": "^0.2.0",
+    "lame": "^1.2.4",
+    "moment": "^2.18.1",
+    "pcm-volume": "^1.0.0",
+    "request": "^2.81.0",
+    "speaker": "^0.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0"
+  }
+}
