@@ -4,6 +4,7 @@ const youtube = require('./youtube.js');
 const bot = new Discord.Client();
 const fs = require('fs');
 const path = require('path');
+const settings = require('./settings.json')
 
 //OPTIONS
 let guild;
@@ -76,4 +77,4 @@ bot.on('message',(message)=>{
     
 })
 
-bot.login("Mjk1NjMyMTQ5MzY3NzUwNjU3.C-VINw._LgpBinEooOxScpiVXcll-e64Eo");
+bot.login(settings.token);

@@ -3,9 +3,7 @@ const bot = new Discord.Client();
 const fs = require('fs');
 const spawn = require('child_process').spawn;
 const open = require('open');
-
-const shiro = 'Mjk3MDkyMzYzNDM4OTE1NTg0.C_zX7A._m5hnzi-rsSRMTBMp6dS7MXdrOw'
-const kurumi = "MjY1NjMzMTg3Nzk3OTI1ODk5.C_zVPw.zY7gPddbtucqTaxQknwda0CrMSc"
+const kurumi = require('./settings.json').token
 
 const prefix = '//'
 const role_name = 'KurumiPass'

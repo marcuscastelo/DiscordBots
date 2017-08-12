@@ -4,6 +4,7 @@ const youtube = require('./youtube.js');
 const bot = new Discord.Client();
 const fs = require('fs');
 const getDuration = require('get-video-duration')
+const settings = require('./settings.json')
 
 //OPTIONS
 let guild;
@@ -775,4 +776,4 @@ Chelsea é um bot de Música dedicado, para controlá-la utilize estes comandos:
     updatePermanence()
 })
 
-bot.login("MjY2MDQyNDY5MDA5OTgxNDQy.DECCNg.kDczYKsxfuFfIP0AprSzSs1cFqI");
+bot.login(settings.token);

@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const child_process = require('child_process')
 const bot = new Discord.Client()
+const settings = require('./settings.json')
 
 
 function isBotOffline(id){
@@ -47,4 +48,4 @@ bot.on('ready',()=>{
     console.log('ok')
 })
 
-bot.login('Mjk3MDkyMzYzNDM4OTE1NTg0.DGvvhw.B2aCcBK5X5g2hjGRHS98kW61zm8')
+bot.login(settings.token)
