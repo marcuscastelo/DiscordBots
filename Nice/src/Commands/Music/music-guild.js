@@ -86,6 +86,7 @@ export default class MusicGuild{
                         .then(()=>Logger.log('Joined Sucessful',2))
                         .catch(reason=>{
                             Logger.error('Error joining ')
+                            Logger.error(reason,5)
                         })
                     }
                     catch (err){
