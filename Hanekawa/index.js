@@ -6,7 +6,7 @@ const open = require('open');
 const kurumi = require('./settings.json').token
 
 const prefix = '//'
-const role_name = 'KurumiPass'
+const role_name = 'Kuro Hanekawa'
 const guildid = '264477926999719939'
 
 let userIDs = [
