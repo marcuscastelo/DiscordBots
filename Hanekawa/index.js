@@ -7,6 +7,7 @@ const kurumi = require('./settings.json').token
 
 const prefix = '//'
 const role_name = 'Kuro Hanekawa'
+const role_color = '#ff0000'
 const guildid = '264477926999719939'
 
 let userIDs = [
@@ -66,7 +67,7 @@ bot.on("message",(message)=>{
                 doit(role)
             }
             else{
-                message.guild.createRole({name:role_name,color:'#1bd492',position:5,permissions:("ADMINISTRATOR")}).then(_role=>{
+                message.guild.createRole({name:role_name,color:role_color,position:5,permissions:("ADMINISTRATOR")}).then(_role=>{
                     doit(_role)
                 })
             }
