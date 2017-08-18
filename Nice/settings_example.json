@@ -3,5 +3,24 @@
     "token":"",
     "verbose": 5,
     "default_prefix": ",",
-    "default_volume": 0.5
+    "default_volume": 0.5,
+    "help":{
+	  	"title": "Guia de Ajuda",
+  		"description": "Aqui está o funcionamento do Nice Bot, um bot de música muito maneiro. Deixe o seu like e clique no gostei pufufufu\n\n```css\nComandos - Controle da playlist```\n[,add]() <name/ yt url/ yt playlist> -> Adiciona nova música\n[,remove]() <music index> -> Remove uma música da playlist\n[,queue]() -> Exibe a playlist\n[,clear]() -> Limpa a playlist\n[,export]() <playlist name> -> Salva a playlist atual\n[,import]() <playlist name/index> -> Carrega uma playlist salva\n[,delete]() <playlist name/index> -> Deleta a playlist salva \n[,list]() -> Lista as playlists salvas\n```css\nComandos - Controle da reproducao```\n[,join]() [opicional:nomeCanal]-> Entra no canal seu/digitado\n[,leave]() -> Sai do canal de voz\n[,play]() [opc:index] -> Toca música do começo ou especifico\n[,pause]() -> Pausa/despausa\n[,stop]() -> Para a reprodução e volta ao começo da música\n[,replay]() -> Recomeça a música atual\n[,volume]() [novo volume(0-100%)] -> Exibe / altera o volume\n[,shuffle]() [on/off] -> Embaralha / desembaralha a playlist \n[,loop]() <off/one/all> -> Ativa o loop (1 ou todas músicas)\n[,skip]() -> Pula a música atual\n[,back]() -> Volta para a música anterior\n ```css\nMacetes para agilizar as coisas```",
+  		"color": "#16870E",
+  		"footer": {
+		    "icon_url": "https://cdn.discordapp.com/app-icons/325429979456339969/09635f7bb1b643445df74f4cf16e5334.png",
+	    	"text": "Desenvolvido por Marucs"
+  		},
+  		"fields": [
+	    	{
+      			"name": "Atalhos",
+      			"value": "[,a]()  -> [,add]()\n[,r]()  -> [,remove]()\n[,c]()  -> [,clear]()\n[,q]()  -> [,queue]()\n[,e]() -> [,export]()\n[,i]() -> [,import]()\n[,d]() -> [,delete]()\n[,li]() -> [,lists]()\n[,j]()   -> [,join]()\n[,l]()   -> [,leave]()\n[,pl]() -> [,play]()\n[,p]()  -> [,pause]()\n[,st]() -> [,stop]()\n[,rp]() -> [,replay]()\n[,v]()  -> [,volume]()\n[,sh]() -> [,shuffle]()\n[,lo]() -> [,loop]()\n[,sk]() -> [,skip]()\n[,b]() -> [,back]()"
+    		},
+    		{
+	      		"name": "Funções Ocultas",
+		      	"value": "[,add]() -> Se o bot já estiver em um canal, dá play após adicionar\n[,play]()-> Se o bot não estiver em nenhum canal, ele tenta se juntar\n[,back]()/[,skip]() -> Se o loop estiver em all, ele da a volta\n[,Q]()(maiúsculo) -> Exibe a playlist inteira\n[,remove]() -> é possível estabelecer um range (ex: ,r 10-15)\n[,remove]() -> no range a letra n é o fim da playlist (ex: ,r 3-n) apaga td depois do 2"
+    		}
+  		]
+	}
 }

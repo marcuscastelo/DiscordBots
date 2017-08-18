@@ -42,6 +42,9 @@ export default class CommandHandler{
                 message.reply('new prefix! = ' +cfrags[0])
             }
         }
+        else if(commandStr=='shutdown'){
+            message.client.destroy().then(()=>process.exit(0))
+        }
         else
             Logger.warn('Commando Inválido')
     }
