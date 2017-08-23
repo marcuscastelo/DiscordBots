@@ -29,7 +29,7 @@ export default class DiscordClient{
         this.bot.on('message',message=>{
             if (message.author.bot) return;
             if (message.channel.type == 'dm') return;
-            if (!message.channel.name.endsWith(bot_name.toLowerCase())) return;
+            //if (!message.channel.name.endsWith(bot_name.toLowerCase())) return;
             Logger.log("Evento OnMessage chamado por "+MessageFormatting.getAuthorName(message), 3)
             CommandHandler.command(message)
         })
