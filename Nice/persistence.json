@@ -50,6 +50,12 @@
 				"videoTitle": "scarlxrd - HEART ATTACK [Prod. JVCXB]",
 				"addedBy": "Vinícius",
 				"duration": 194
+			},
+			{
+				"videoId": "D3nWSBpLiAI",
+				"videoTitle": "scarlxrd -  CHAIN$AW [Prod. NIGHT GRIND]",
+				"addedBy": "2000/3",
+				"duration": 213
 			}
 		],
 		"playlist_src": [],
@@ -57,7 +63,7 @@
 		"volume": 0.2,
 		"shuffle": false,
 		"loop": 0,
-		"actualIndex": 7,
+		"actualIndex": 8,
 		"prefix": ","
 	},
 	"338148155097088022": {
