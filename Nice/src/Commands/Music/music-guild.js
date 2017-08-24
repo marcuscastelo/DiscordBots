@@ -197,7 +197,7 @@ export default class MusicGuild{
 
         let msg = '```css\nPlaylist [Pagina '+(pages.length+1)+'/'+Math.ceil(total/perPage)+']:\n\n'
         for (let i=0;i<total;i++){
-            msg += (this.actualIndex==i&&this.dispatcher?'#':'')+(i+1)+'. ['+this.playlist[i].videoTitle+'] ['+StringFormatter.formatTime(this.playlist[i].duration,2)+']  #'+this.playlist[i].addedBy+'\n'
+            msg += (this.actualIndex==i&&this.dispatcher?'#':' ')+(i+1)+'. ['+this.playlist[i].videoTitle+'] ['+StringFormatter.formatTime(this.playlist[i].duration,2)+']  #'+this.playlist[i].addedBy+'\n'
             if ((i+1)%10==0 || i+1>=total){
                 msg += '\n```\n `Digite (p25 | > | <) para ver outras paginas`'
                 pages.push(msg)

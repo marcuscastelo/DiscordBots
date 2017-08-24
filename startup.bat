@@ -2,4 +2,4 @@
 git fetch
 git pull
 cd Shiro
-RUN.vbs
+call RUN.vbs
