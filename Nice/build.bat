@@ -1,1 +1,1 @@
-babel src --out-dir nice_build
+call babel src --out-dir nice_build

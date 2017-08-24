@@ -1,9 +1,9 @@
 cd Chelsea
-RUN.vbs
+call RUN.vbs
 cd ..\Hikari
-RUN.vbs
+call RUN.vbs
 cd ..\Nice
-RUN.vbs
-cd ..\Kurumi
-RUN.vbs
+call RUN.vbs
+cd ..\Hanekawa
+call RUN.vbs
 exit
