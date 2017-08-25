@@ -23,30 +23,68 @@
 		"name": "Dev",
 		"playlist": [
 			{
-				"videoId": "n5p9_p633xM",
-				"videoTitle": "Disturbed - Hell",
-				"addedBy": "ecchi amo muito",
-				"duration": 253
-			},
-			{
-				"videoId": "CZ6_CIv3Tfc",
-				"videoTitle": "Arararararagi-san~ | 10 hours",
-				"addedBy": "ecchi amo muito",
-				"duration": 36048
+				"videoId": "G12dlvX1CoA",
+				"videoTitle": "Koi to Uso OP 恋と嘘 【Kanashii Ureshii by Frederic 】",
+				"addedBy": "Retardus Mentalis",
+				"duration": 90
 			}
 		],
 		"playlist_src": [],
 		"saved_playlists": [],
-		"volume": 0.25,
+		"volume": 0.2,
 		"shuffle": false,
 		"loop": 0,
-		"actualIndex": 1,
+		"actualIndex": 0,
 		"prefix": ","
 	},
 	"350057468111355905": {
 		"id": "350057468111355905",
 		"name": "IFSP",
 		"playlist": [
+			{
+				"videoId": "G12dlvX1CoA",
+				"videoTitle": "Koi to Uso OP 恋と嘘 【Kanashii Ureshii by Frederic 】",
+				"addedBy": "Marucs",
+				"duration": 90
+			},
+			{
+				"videoId": "HogRNK351JY",
+				"videoTitle": "Zankyou no Terror OP / Opening Creditless",
+				"addedBy": "Marucs",
+				"duration": 94
+			},
+			{
+				"videoId": "u-3Y-2aj9Cw",
+				"videoTitle": "Naruto Ending 1",
+				"addedBy": "Kanashiro",
+				"duration": 95
+			},
+			{
+				"videoId": "B7uMdmCQabc",
+				"videoTitle": "Fullmetal Alchemist: Brotherhood Opening 1 (Again) Lyrics",
+				"addedBy": "Marucs",
+				"duration": 256
+			},
+			{
+				"videoId": "u-3Y-2aj9Cw",
+				"videoTitle": "Naruto Ending 1",
+				"addedBy": "Kanashiro",
+				"duration": 95
+			},
+			{
+				"videoId": "q_sQUK418mM",
+				"videoTitle": "「only my railgun」歌ってみた【＊なみりん】",
+				"addedBy": "Marucs",
+				"duration": 251
+			},
+			{
+				"videoId": "u-3Y-2aj9Cw",
+				"videoTitle": "Naruto Ending 1",
+				"addedBy": "Marucs",
+				"duration": 95
+			}
+		],
+		"playlist_src": [
 			{
 				"videoId": "G12dlvX1CoA",
 				"videoTitle": "Koi to Uso OP 恋と嘘 【Kanashii Ureshii by Frederic 】",
@@ -70,9 +108,26 @@
 				"videoTitle": "Zankyou no Terror OP / Opening Creditless",
 				"addedBy": "Marucs",
 				"duration": 94
+			},
+			{
+				"videoId": "B7uMdmCQabc",
+				"videoTitle": "Fullmetal Alchemist: Brotherhood Opening 1 (Again) Lyrics",
+				"addedBy": "Marucs",
+				"duration": 256
+			},
+			{
+				"videoId": "u-3Y-2aj9Cw",
+				"videoTitle": "Naruto Ending 1",
+				"addedBy": "Kanashiro",
+				"duration": 95
+			},
+			{
+				"videoId": "u-3Y-2aj9Cw",
+				"videoTitle": "Naruto Ending 1",
+				"addedBy": "Kanashiro",
+				"duration": 95
 			}
 		],
-		"playlist_src": [],
 		"saved_playlists": [
 			{
 				"name": "anime",
@@ -101,6 +156,18 @@
 						"videoTitle": "Zankyou no Terror OP / Opening Creditless",
 						"addedBy": "Marucs",
 						"duration": 94
+					},
+					{
+						"videoId": "_HsXIvpLdHE",
+						"videoTitle": "Delusion♡Express FULL SUB HQ (Otorimonogatari Opening) by Kana Hanazawa",
+						"addedBy": "Marucs",
+						"duration": 261
+					},
+					{
+						"videoId": "B7uMdmCQabc",
+						"videoTitle": "Fullmetal Alchemist: Brotherhood Opening 1 (Again) Lyrics",
+						"addedBy": "Marucs",
+						"duration": 256
 					}
 				]
 			},
@@ -682,9 +749,9 @@
 			}
 		],
 		"volume": 0.2,
-		"shuffle": false,
+		"shuffle": true,
 		"loop": 0,
-		"actualIndex": 3,
+		"actualIndex": 6,
 		"prefix": ","
 	}
 }

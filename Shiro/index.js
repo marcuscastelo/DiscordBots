@@ -33,11 +33,12 @@ bot.on('ready',()=>{
 
     
     let x = ()=>{
-        for (id of ids){
+        for (let id of ids){
             isBotOffline(id).then(username=>{
                 startBot(username)
+                console.log('starting '+username)
             }).catch((username)=>{
-                console.log(username+': online')
+                console.log(username+': already online')
             })
         }
     }
