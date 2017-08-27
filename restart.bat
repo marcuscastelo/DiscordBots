@@ -1,2 +1,2 @@
 shutdown.bat
-startbots.bat
+startup.bat

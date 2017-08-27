@@ -2,20 +2,13 @@
 	"264477926999719939": {
 		"id": "264477926999719939",
 		"name": "Vila Oculta da Folha",
-		"playlist": [
-			{
-				"videoId": "i79M4nKW1Ms",
-				"videoTitle": "Most Beautiful & Emotional Shigatsu wa Kimi no Uso OST IMO",
-				"addedBy": "Marucs",
-				"duration": 1887
-			}
-		],
+		"playlist": [],
 		"playlist_src": [],
 		"saved_playlists": [],
-		"volume": 0.15,
+		"volume": 0.1,
 		"shuffle": false,
 		"loop": 0,
-		"actualIndex": 0,
+		"actualIndex": -1,
 		"prefix": ","
 	},
 	"338148155097088022": {
@@ -23,17 +16,17 @@
 		"name": "Dev",
 		"playlist": [
 			{
-				"videoId": "G12dlvX1CoA",
-				"videoTitle": "Koi to Uso OP 恋と嘘 【Kanashii Ureshii by Frederic 】",
+				"videoId": "isi9ogy3xo0",
+				"videoTitle": "AUDIOLIVRO - Jerome David Salinger - O Apanhador No Campo de Centeio",
 				"addedBy": "Retardus Mentalis",
-				"duration": 90
+				"duration": 26906
 			}
 		],
 		"playlist_src": [],
 		"saved_playlists": [],
-		"volume": 0.2,
+		"volume": 0.5,
 		"shuffle": false,
-		"loop": 0,
+		"loop": 1,
 		"actualIndex": 0,
 		"prefix": ","
 	},

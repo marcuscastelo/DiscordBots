@@ -28,14 +28,11 @@ export default class CommandHandler{
         let command = cfrags.splice(0,1)[0]
         Logger.log(`Parametros do comando: "${cfrags}"`,5)
         Logger.log('Separando tipo de comando',4)
-        let musicMatch = command.match(/(?:^)((j|lo|li|l|a|rp|r|c|e|i|pl|sh|v|p|st|q|d|sk|b).*)(?:$)/)
+        let musicMatch = command.match(/(?:^)((j|lo|li|l|a|rp|r|c|e|i|pl|sh|v|p|st|q|d|sk|b|np|now).*)(?:$)/)
         Logger.log('musicMatch = '+JSON.stringify(musicMatch),5)
         let commandStr = command.toLowerCase()
-        if (musicMatch){
-            Logger.log('Comando de música',4)
-            Music.lobby(musicMatch[2],cfrags,message);
-        }
-        else if(commandStr=='setprefix')
+        
+        if(commandStr=='setprefix')
         {
             if (cfrags.length>0){
                 PersistenceManager.set_prefix(message.guild,cfrags[0])
@@ -44,6 +41,10 @@ export default class CommandHandler{
         }
         else if(commandStr=='shutdown'){
             message.client.destroy().then(()=>process.exit(0))
+        }
+        else if (musicMatch){
+            Logger.log('Comando de música',4)
+            Music.lobby(musicMatch[2],cfrags,message);
         }
         else
             Logger.warn('Commando Inválido')
