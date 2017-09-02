@@ -170,7 +170,7 @@ export default class PlaylistManager{
         let newIndex = this._addVideo(videoId,videoTitle,duration)
         Logger.log(`[${this.message.guild}]: ${this.message.member.displayName} adicionou: ${this.musicGuild.playlist.length}. [${videoTitle}]`)
         PersistenceManager.save()
-        MessageFormatter.sendInfo('Add',MessageFormatter.getAuthorName(this.message)+' Adicionou:\n '+this.playlist.length+'. ['+videoTitle+']',this.message,0)        
+        MessageFormatter.sendInfo('Add',MessageFormatter.getAuthorName(this.message)+' Adicionou:\n '+(newIndex+1)+'. ['+videoTitle+']',this.message,0)        
 
         if (this.musicGuild.voiceConnection && !this.musicGuild.dispatcher){
             this.musicGuild.play(this.message,newIndex)

@@ -308,8 +308,8 @@ export default class MusicGuild{
                         if (mg.dispatcher.time/1000>item.duration) return
                         let pt = StringFormatter.formatTime(Math.round(mg.dispatcher.time/1000),durStr.split(':').length)
                         let progressBar = '['
-                        let pos = Math.round(mg.dispatcher.time/1000/item.duration*75)
-                        for (let i = 1;i<=75;i++){
+                        let pos = Math.round(mg.dispatcher.time/1000/item.duration*73)
+                        for (let i = 1;i<=73;i++){
                             if (i==pos)
                                 progressBar+='o'
                             else

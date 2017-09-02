@@ -43,8 +43,9 @@ bot.on('ready',()=>{
         }
     }
     x()
-    setInterval(x,Math.random()*30000+10000)
-    
+    setTimeout(()=>{
+    	setInterval(x,Math.random()*30000+10000)
+    },20000)
 
     console.log('ok')
 })
