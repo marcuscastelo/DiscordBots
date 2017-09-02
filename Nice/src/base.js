@@ -3,9 +3,6 @@ import {token,bot_name} from '../settings.json'
 import PersistenceManager from './Persistence/persistence-manager.js'
 import MessageFormatting from './tools/message-formatting.js'
 import CommandHandler from './Commands/command-handler.js'
-import Speaker from 'speaker' 
-import {Decoder} from 'lame'
-import volume from 'pcm-volume'
 import fs from 'fs'
 import Logger from './logger.js'
 
@@ -17,12 +14,6 @@ export default class DiscordClient{
         this.bot.on('ready',()=>{
             Logger.log('Evento Ready Chamado', 3)
             PersistenceManager.init(this.bot)
-            Logger.log('Preparando volume e stream de anúncio de sucesso',4)
-            let vol = 0.17
-            let v = new volume()
-            v.setVolume(vol)
-            Logger.log('volume anuncio = '+vol,5)
-            fs.createReadStream('../ready.mp3').pipe(new Decoder()).pipe(v).pipe(new Speaker())
             Logger.log('[Sucesso] Bot funcional',0)
         })
         Logger.log('Definindo evento onMessage', 3)
