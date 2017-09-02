@@ -3,13 +3,12 @@ const child_process = require('child_process')
 const bot = new Discord.Client()
 const settings = require('./settings.json')
 
+const botCredits = {}
 
 function isBotOffline(id){
     return new Promise((res,rej)=>{
         bot.fetchUser(id).then(user=>{
-            if (user.presence.status!='online'){
-                res(user.username)
-            }
+            if (user.presence.status!='online') res(user.username)
             else rej(user.username)
         })
     })
@@ -30,14 +29,17 @@ bot.on('ready',()=>{
         '295632149367750657', //Hikari
         '266042469009981442'  //Chelsea
     ]
-
     
     let x = ()=>{
         for (let id of ids){
             isBotOffline(id).then(username=>{
-                startBot(username)
-                console.log('starting '+username)
+                if (!botCredits[id] || botCredits[id]<=0){
+                    botCredits[id] = 10
+                    startBot(username)
+                    console.log('starting '+username)
+                }
             }).catch((username)=>{
+                botCredits[id]--;
                 console.log(username+': already online')
             })
         }

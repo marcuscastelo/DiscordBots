@@ -9,7 +9,6 @@ import getVideoDuration from 'get-video-duration'
 import ytdl from 'ytdl-core'
 import shuffle from 'shuffle-array'
 
-
 let guilds = {}
 export default class MusicGuild{
     get data(){ return PersistenceManager.getData(this.guild) }
@@ -281,7 +280,9 @@ export default class MusicGuild{
                 if (this.playingInterval)
                     clearInterval(this.playingInterval)
                 if (this.lastPlayMessage){
-                    this.lastPlayMessage.edit(`\`\`\`css\n[Play] Info: Reproducao Anterior:\n ${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}\n[-------------------------------------------------------------------------o]\n[${durStr}/${durStr}]\`\`\``)
+                    this.lastPlayMessage.edit(`\`\`\`css\n[Play] Info: Reproducao Anterior:\n ${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}\n[-------------------------------------------------------------------------o]\n[${durStr}/${durStr}]\`\`\``).then(()=>{
+                        this.lastPlayMessage = null
+                    })
                 }
 
                 if (reason=='Stream is not generating quickly enough.'||reason==undefined){
@@ -301,27 +302,7 @@ export default class MusicGuild{
             this.dispatcher.on('start',()=>{
                 Logger.log('Iniciando Reprodução de '+item.videoTitle)
                 this.dispatcher.setVolume(this.volume)
-                let mg = MusicGuild.getMusicGuild(this.guild)
-                MessageFormatter.sendInfo('Play',`Tocando agora:\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}`,message,0,pm=>{
-                    mg.lastPlayMessage = pm
-                    mg.playingInterval = setInterval(()=>{
-                        if (mg.dispatcher.time/1000>item.duration) return
-                        let pt = StringFormatter.formatTime(Math.round(mg.dispatcher.time/1000),durStr.split(':').length)
-                        let progressBar = '['
-                        let pos = Math.round(mg.dispatcher.time/1000/item.duration*73)
-                        for (let i = 1;i<=73;i++){
-                            if (i==pos)
-                                progressBar+='o'
-                            else
-                                progressBar+='-'
-                        }
-                        progressBar+=']'
-
-                        if (mg.dispatcher && mg.playlist[mg.actualIndex] == item)
-                            if (pm.editable)
-                                pm.edit(`\`\`\`css\n[Play] Info: Tocando agora: [Loop: ${mg.loop==0?'Off':(mg.loop==1?'One':'All')}] - [Shuffle: ${mg.shuffle?'On':'Off'}]\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}\n${progressBar}\n[${pt}/${durStr}]\`\`\``)
-                    },1500)
-                })
+                this.nowPlaying(message);
             })            
         }
         else MessageFormatter.sendError('Play','Nem o bot nem você estão em um canal de voz',message)
@@ -781,6 +762,52 @@ export default class MusicGuild{
             MessageFormatter.sendInfo('Shuffle','Shuffle desativado por '+message.member.displayName,message)
             
         }
+    }
+
+    /**
+     * 
+     * @param {Message} message 
+     */
+    nowPlaying(message){
+        if (!this.dispatcher){
+            MessageFormatter.sendError('NowPlaying','Nada tocando no momento',message);
+            return;
+        }
+
+        
+        let index = this.actualIndex;
+        let item = this.playlist[index]
+        let durStr = StringFormatter.formatTime(item.duration,2)
+
+        if (this.playingInterval)
+            clearInterval(this.playingInterval)
+        if (this.lastPlayMessage){
+            if (this.lastPlayMessage.deletable)
+                this.lastPlayMessage.delete()
+        }
+
+
+
+        let mg = MusicGuild.getMusicGuild(this.guild)
+        MessageFormatter.sendInfo('NowPlaying',`Tocando agora:\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}`,message,0,pm=>{
+            mg.lastPlayMessage = pm 
+            mg.playingInterval = setInterval(()=>{
+                if (!mg.dispatcher || mg.dispatcher.time/1000>item.duration) return
+                let pt = StringFormatter.formatTime(Math.round(mg.dispatcher.time/1000),durStr.split(':').length)
+                let progressBar = '['
+                let pos = Math.round(mg.dispatcher.time/1000/item.duration*75)
+                for (let i = 1;i<=75;i++){
+                    if (i==pos)
+                        progressBar+='o'
+                    else
+                        progressBar+='-'
+                }
+                progressBar+=']'
+                if (mg.dispatcher && mg.playlist[mg.actualIndex] == item)
+                    if (pm.editable)
+                        pm.edit(`\`\`\`css\n[NowPlaying] Info: Tocando agora: [Loop: ${mg.loop==0?'Off':(mg.loop==1?'One':'All')}] - [Shuffle: ${mg.shuffle?'On':'Off'}]\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}\n${progressBar}\n[${pt}/${durStr}]\`\`\``)
+            },1500)
+        })
     }
 
 }
