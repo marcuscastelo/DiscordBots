@@ -11,7 +11,7 @@ export default class MusicCommandHandler{
      * @param {Message} message 
      */
     static lobby(command,frags,message){
-        Logger.log('Inicializando Objeto MusicGuild',4)
+        Logger.log('Inicializando Objeto MusicGuild',6)
         let musicGuild = MusicGuild.getMusicGuild(message.guild)
 
         switch(command){
@@ -33,10 +33,7 @@ export default class MusicCommandHandler{
                         musicGuild.play(message,parseInt(frags[0])-1)
                 }
                 else
-                    if (musicGuild.voiceConnection)
-                        musicGuild.play(message,musicGuild.actualIndex)
-                    else
-                        musicGuild.play(message,0)
+                    musicGuild.play(message,0)
                 break;
             case 'v':
                 musicGuild.setVolume(message,frags)
