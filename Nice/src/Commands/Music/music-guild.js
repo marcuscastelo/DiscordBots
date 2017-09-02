@@ -792,7 +792,7 @@ export default class MusicGuild{
         let edited = true;
 
         let mg = MusicGuild.getMusicGuild(this.guild)
-        MessageFormatter.sendInfo('NowPlaying',`Tocando agora:\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}`,message,0,pm=>{
+        MessageFormatter.sendInfo('NowPlaying',`Tocando agora:\n#${index+1}. [${item.videoTitle}] - Adicionada por [${item.addedBy}]`,message,0,pm=>{
 
             if (!edited) return;
             edited = false;
