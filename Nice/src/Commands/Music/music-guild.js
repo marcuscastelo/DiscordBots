@@ -713,21 +713,21 @@ export default class MusicGuild{
                     case 'd':
                         this.loop = 0
                         Logger.log(`[${this.guild}]: Loop desligado`)
-                        MessageFormatter.sendInfo('Loop','Loop desligado por '+message.member.displayName,message)
+                        MessageFormatter.sendInfo('Loop','Loop desligado por '+message.member.displayName,message,0)
                         return;
 
                     case 'on':
                     case 'u':
                         this.loop = 1
                         Logger.log(`[${this.guild}]: Loop uma musica`)
-                        MessageFormatter.sendInfo('Loop','Loop ligado para uma musica por '+message.member.displayName,message)                    
+                        MessageFormatter.sendInfo('Loop','Loop ligado para uma musica por '+message.member.displayName,message,0)                    
                         return;
 
                     case 'a':
                     case 't':
                         this.loop = 2
                         Logger.log(`[${this.guild}]: Loop todas as musicas`)
-                        MessageFormatter.sendInfo('Loop','Loop ligado para todas as musicas por '+message.member.displayName,message)
+                        MessageFormatter.sendInfo('Loop','Loop ligado para todas as musicas por '+message.member.displayName,message,0)
                         return; 
                 }
         }
@@ -754,7 +754,7 @@ export default class MusicGuild{
             }
             this.shuffle = true
             Logger.log(`[${this.guild}]: Shuffle ativado`)
-            MessageFormatter.sendInfo('Shuffle','Shuffle ativado por '+message.member.displayName,message)
+            MessageFormatter.sendInfo('Shuffle','Shuffle ativado por '+message.member.displayName,message,0)
         }
         else{
             this.actualIndex = this.playlist_src.indexOf(this.playlist[this.actualIndex])
@@ -762,7 +762,7 @@ export default class MusicGuild{
             this.playlist_src = []
             this.shuffle = false
             Logger.log(`[${this.guild}]: Shuffle desativado`)
-            MessageFormatter.sendInfo('Shuffle','Shuffle desativado por '+message.member.displayName,message)
+            MessageFormatter.sendInfo('Shuffle','Shuffle desativado por '+message.member.displayName,message,0)
             
         }
     }
