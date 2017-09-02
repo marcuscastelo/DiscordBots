@@ -275,7 +275,7 @@ export default class MusicGuild{
             let item = this.playlist[index]
             let durStr = StringFormatter.formatTime(item.duration,2)
             this.voiceConnection.playStream(this.stream,{volume:this.volume}).on('end',reason=>{
-                Logger.log('Fim da transmissão: '+item.videoTitle)
+                Logger.log('Fim da transmissão: '+item.videoTitle+" reason: "+reason)
 
                 if (this.playingInterval)
                     clearInterval(this.playingInterval)
@@ -786,10 +786,14 @@ export default class MusicGuild{
                 this.lastPlayMessage.delete()
         }
 
-
+        let edited = true;
 
         let mg = MusicGuild.getMusicGuild(this.guild)
         MessageFormatter.sendInfo('NowPlaying',`Tocando agora:\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}`,message,0,pm=>{
+
+            if (!edited) return;
+            edited = false;
+
             mg.lastPlayMessage = pm 
             mg.playingInterval = setInterval(()=>{
                 if (!mg.dispatcher || mg.dispatcher.time/1000>item.duration) return
@@ -805,7 +809,7 @@ export default class MusicGuild{
                 progressBar+=']'
                 if (mg.dispatcher && mg.playlist[mg.actualIndex] == item)
                     if (pm.editable)
-                        pm.edit(`\`\`\`css\n[NowPlaying] Info: Tocando agora: [Loop: ${mg.loop==0?'Off':(mg.loop==1?'One':'All')}] - [Shuffle: ${mg.shuffle?'On':'Off'}]\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}\n${progressBar}\n[${pt}/${durStr}]\`\`\``)
+                        pm.edit(`\`\`\`css\n[NowPlaying] Info: Tocando agora: [Loop: ${mg.loop==0?'Off':(mg.loop==1?'One':'All')}] - [Shuffle: ${mg.shuffle?'On':'Off'}]\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}\n${progressBar}\n[${pt}/${durStr}]\`\`\``).then(m=>edited=true)
             },1500)
         })
     }

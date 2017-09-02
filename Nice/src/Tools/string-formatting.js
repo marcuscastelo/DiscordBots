@@ -15,7 +15,7 @@ export default class StringFormatter{
     			buffer.splice(0,0,temp%60)
 			}
 			            
-			if (temp>=24&&buffer.length>1){
+			if (temp>=24&&buffer.length>2){
     			buffer[0] = temp%24
     			buffer.splice(0,0,Math.floor(temp/24));
 			}
