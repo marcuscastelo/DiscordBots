@@ -193,14 +193,13 @@ export default class MusicGuild{
         let total = this.playlist.length
         let perPage = 10
         
-
-        let msg = '```css\nPlaylist [Pagina '+(pages.length+1)+'/'+Math.ceil(total/perPage)+']:\n\n'
+        let msg = ''
         for (let i=0;i<total;i++){
             msg += (this.actualIndex==i&&this.dispatcher?'#':' ')+(i+1)+'. ['+this.playlist[i].videoTitle+'] ['+StringFormatter.formatTime(this.playlist[i].duration,2)+']  #'+this.playlist[i].addedBy+'\n'
             if ((i+1)%10==0 || i+1>=total){
                 msg += '\n```\n `Digite (p25 | > | <) para ver outras paginas`'
                 pages.push(msg)
-                msg = '```css\nPlaylist [Pagina '+(pages.length+1)+'/'+Math.ceil(total/perPage)+']:\n'
+                msg = ''
             }
         }
 
@@ -210,6 +209,9 @@ export default class MusicGuild{
             else
                 page = 0;
         }
+
+        let getHeader = (mystr) => {return  '```css\nPlaylist [Pagina '+(pages.length+1)+'/'+Math.ceil(total/perPage)+'] [Shuffle: '+(shuffle?'On':'Off')+'] [Loop: '+ (loop==0?'Off':(loop==1?'One':'All')) +']:\n\n'+mystr}
+
         let loop = (playmsg)=>{
             playmsg.channel.awaitMessages(m=>m.author.username==message.author.username,{max:1}).then(collected=>{
                     let c = collected.first().content
@@ -218,17 +220,18 @@ export default class MusicGuild{
                     else if (c.length>1&&!isNaN(c.substr(1))) page = parseInt(c.substr(1))-1
                     else {
                         page = page<0?0:(page>=pages.length?pages.length-1:page)
-                        playmsg.edit(pages[page].substr(0,pages[page].length-46))
+                        let exib = getHeader(pages[page])
+                        playmsg.edit(exib.substr(0,exib.length-46))
                         return;
                     };
                     page = page<0?0:(page>=pages.length?pages.length-1:page)
-                    playmsg.edit(pages[page])
+                    playmsg.edit(getHeader(pages[page]))
                     loop(playmsg)
                     if (collected.first().deletable)
                         collected.first().delete()
                 }).catch()
         }
-        MessageFormatter.sendMessage(pages[page],message,0,playmsg=>loop(playmsg))
+        MessageFormatter.sendMessage(getHeader(pages[page]),message,0,playmsg=>loop(playmsg))
         
 
     }

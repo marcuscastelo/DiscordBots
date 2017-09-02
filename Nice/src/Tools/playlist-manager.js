@@ -167,7 +167,6 @@ export default class PlaylistManager{
     }
 
     addSingleVideo(videoId,videoTitle,duration){
-        console.log(duration);
         let newIndex = this._addVideo(videoId,videoTitle,duration)
         Logger.log(`[${this.message.guild}]: ${this.message.member.displayName} adicionou: ${this.musicGuild.playlist.length}. [${videoTitle}]`)
         PersistenceManager.save()
