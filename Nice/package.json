@@ -11,12 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "get-video-duration": "^0.2.0",
-    "lame": "^1.2.4",
     "moment": "^2.18.1",
-    "pcm-volume": "^1.0.0",
-    "request": "^2.81.0",
-    "speaker": "^0.3.0"
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
