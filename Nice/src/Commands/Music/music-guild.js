@@ -75,7 +75,7 @@ export default class MusicGuild{
                 Logger.log(`[${message.guild}]: Joining found voice channel: ${foundChannel.name}`)
             }
             else
-                message.reply('42 todo:not found');
+                message.reply('42 todo:not found')
         }
         else{
             if (message.member.voiceChannel)
@@ -512,10 +512,10 @@ export default class MusicGuild{
         }
 
         let newItem = {
-                name:name,
-                addedBy:message.member.displayName,
-                playlist:this.playlist.slice()
-            }
+            name:name,
+            addedBy:message.member.displayName,
+            playlist:this.playlist.slice()
+        }
 
         let existItem = this.saved_playlists.find(item=>item.name==name)
         if (existItem){
