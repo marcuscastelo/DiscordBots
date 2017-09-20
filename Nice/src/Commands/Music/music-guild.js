@@ -5,7 +5,6 @@ import youtube from '../../youtube/youtube.js'
 import MessageFormatter from '../../Tools/message-formatting.js'
 import PlaylistManager from '../../Tools/playlist-manager.js'
 import StringFormatter from '../../Tools/string-formatting.js'
-import getVideoDuration from 'get-video-duration'
 import ytdl from 'ytdl-core'
 import shuffle from 'shuffle-array'
 
