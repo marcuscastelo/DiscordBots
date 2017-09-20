@@ -237,6 +237,12 @@
 				"videoTitle": "[1080p with lyrics] Assassination Classroom all openings (1-4)",
 				"addedBy": "Marucs",
 				"duration": 364
+			},
+			{
+				"videoId": "YhBeXAPdeek",
+				"videoTitle": "🔴 Live Anime Music Radio 24/7",
+				"addedBy": "Marucs",
+				"duration": 0
 			}
 		],
 		"playlist_src": [],
@@ -425,7 +431,7 @@
 		"volume": 0.4,
 		"shuffle": false,
 		"loop": 0,
-		"actualIndex": 28,
+		"actualIndex": 29,
 		"prefix": ","
 	}
 }
