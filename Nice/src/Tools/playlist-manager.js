@@ -104,10 +104,8 @@ export default class PlaylistManager{
                 MessageFormatter.sendError('Add','Nenhum resultado no youtube para: '+search,message)
             }
             else if(videoId != 'end'){
-                console.log('1')
                 this.lastSearch--;
             	youtube.addById(videoId, (id,title,duration) => {
-                    console.log('2')
                     this.lastSearch++;
             		sresult[videoId] = {}
                 	sresult[videoId].callback = ()=>{
@@ -116,7 +114,6 @@ export default class PlaylistManager{
                     sresult[videoId].text = videoTitle + ' [' + StringFormatter.formatTime(StringFormatter.convert_time(duration)) + ']'
                     if (this.lastSearch == 0) 
                     {
-                        console.log('3')
                         MessageFormatter.makeSelectFromMessage(message.author,'Adicionar qual desses:',sresult).send(message.channel)
                     }
             	})
