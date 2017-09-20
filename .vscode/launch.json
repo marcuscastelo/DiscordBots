@@ -2,7 +2,7 @@
         "version": "0.2.0",
         "configurations": [
             {
-                "name": "debug",
+                "name": "Nice-Debug",
                 "type": "node",
                 "request": "launch",
                 "program": "${workspaceRoot}/Nice/nice_build/app.js",

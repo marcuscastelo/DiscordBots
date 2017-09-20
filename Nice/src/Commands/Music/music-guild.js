@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import {Guild, Message} from 'discord.js'
 import PersistenceManager from '../../Persistence/persistence-manager.js'
 import Logger from '../../logger.js'
@@ -74,7 +75,7 @@ export default class MusicGuild{
                 Logger.log(`[${message.guild}]: Joining found voice channel: ${foundChannel.name}`)
             }
             else
-                message.reply('42 todo:not found')
+                message.reply('42 todo:not found');
         }
         else{
             if (message.member.voiceChannel)
@@ -525,7 +526,7 @@ export default class MusicGuild{
                     this.saved_playlists.splice(index,1)
                     this.saved_playlists.splice(index,0,newItem)
                     Logger.log('[Overwriting]Playlist atual exportada como '+name)
-                    MessageFormatter.sendInfo('Export',`${message.member.displayName} sobrescreveu a playlist com o nome de ${name}\n\nDigite ,li para ver a lista delas`,message,)
+                    MessageFormatter.sendInfo('Export',`${message.member.displayName} sobrescreveu a playlist com o nome de ${name}\n\nDigite ,li para ver a lista delas`,message,0)
                     PersistenceManager.save()
                 },
                 'Nao':()=>{}
@@ -534,7 +535,7 @@ export default class MusicGuild{
         else{
             this.saved_playlists.push(newItem)
             Logger.log('Playlist atual exportada como '+name)
-            MessageFormatter.sendInfo('Export',`${message.member.displayName} exportou a playlist atual como: ${name}\n\nDigite ,li para ver a lista delas`,message)
+            MessageFormatter.sendInfo('Export',`${message.member.displayName} exportou a playlist atual como: ${name}\n\nDigite ,li para ver a lista delas`,message,0)
             PersistenceManager.save()
         }
         
