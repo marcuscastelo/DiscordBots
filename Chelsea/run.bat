@@ -1,2 +1,2 @@
-node index.js
-pause
+
+call build_run.bat
