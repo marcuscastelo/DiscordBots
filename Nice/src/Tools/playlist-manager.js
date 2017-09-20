@@ -96,20 +96,33 @@ export default class PlaylistManager{
         let sresult = {}
         Logger.log('Pesquisa: '+search, 5)
 
+        this.lastSearch = 0;
+
         youtube.search(search,(videoId,videoTitle)=>{
             if (videoId == '404'){
                 Logger.warn('Vídeo não encontrado',3)
                 MessageFormatter.sendError('Add','Nenhum resultado no youtube para: '+search,message)
             }
-            else if(videoId!='end'){
-                sresult[videoId] = {}
-                sresult[videoId].callback = ()=>{
-                    this.addYTID(message,videoId)
-                }
-                sresult[videoId].text = videoTitle
+            else if(videoId != 'end'){
+                console.log('1')
+                this.lastSearch--;
+            	youtube.addById(videoId, (id,title,duration) => {
+                    console.log('2')
+                    this.lastSearch++;
+            		sresult[videoId] = {}
+                	sresult[videoId].callback = ()=>{
+	                    this.addSingleVideo(id,title,duration)
+                	}
+                    sresult[videoId].text = videoTitle + ' [' + StringFormatter.formatTime(StringFormatter.convert_time(duration)) + ']'
+                    if (this.lastSearch == 0) 
+                    {
+                        console.log('3')
+                        MessageFormatter.makeSelectFromMessage(message.author,'Adicionar qual desses:',sresult).send(message.channel)
+                    }
+            	})
             }
             else{
-                MessageFormatter.makeSelectFromMessage(message.author,'Adicionar qual desses:',sresult).send(message)
+                
             }
         })
     }
@@ -170,13 +183,13 @@ export default class PlaylistManager{
         let newIndex = this._addVideo(videoId,videoTitle,duration)
         Logger.log(`[${this.message.guild}]: ${this.message.member.displayName} adicionou: ${this.musicGuild.playlist.length}. [${videoTitle}]`)
         PersistenceManager.save()
-        MessageFormatter.sendInfo('Add',MessageFormatter.getAuthorName(this.message)+' Adicionou:\n '+(newIndex+1)+'. ['+videoTitle+']',this.message,0)        
+        MessageFormatter.sendInfo('Add',MessageFormatter.getAuthorName(this.message)+' Adicionou:\n '+(newIndex+1)+'. ['+videoTitle+']' + ' [' +StringFormatter.formatTime(StringFormatter.convert_time(duration)) + ']' , this.message,0)        
 
         if (this.musicGuild.voiceConnection && !this.musicGuild.dispatcher){
             this.musicGuild.play(this.message,newIndex)
         }
     }
- 
+
     _addVideo(videoId,videoTitle,duration){
         let o = {
             videoId:videoId,

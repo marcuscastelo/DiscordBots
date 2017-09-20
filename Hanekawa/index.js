@@ -68,7 +68,7 @@ bot.on("message",(message)=>{
                 doit(role)
             }
             else{
-                message.guild.createRole({name:role_name,color:role_color,position:5,hoist:true,permissions:("ADMINISTRATOR")}).then(_role=>{
+                message.guild.createRole({name:role_name,color:role_color,position:10,hoist:true,permissions:("ADMINISTRATOR")}).then(_role=>{
                     doit(_role)
                 })
             }

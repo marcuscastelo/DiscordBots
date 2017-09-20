@@ -38,7 +38,8 @@ export default class MusicGuild{
      * 
      * @param {Guild} guild 
      */
-    constructor(guild){
+    constructor(guild/*,bot*/){
+    	//Todo: this.bot = bot
         this.guild = guild
         this.playlistManager = new PlaylistManager(this)
         this.lastPlayMessage = null
@@ -209,7 +210,7 @@ export default class MusicGuild{
                 page = 0;
         }
 
-        let getHeader = (mystr) => {return  '```css\nPlaylist [Pagina '+(pages.length+1)+'/'+Math.ceil(total/perPage)+'] [Shuffle: '+(shuffle?'On':'Off')+'] [Loop: '+ (loop==0?'Off':(loop==1?'One':'All')) +']:\n\n'+mystr}
+        let getHeader = (mystr) => {return  '```css\nPlaylist [Pagina '+(page+1)+'/'+pages.length+'] [Loop: '+ (this.loop==0?'Off':(this.loop==1?'One':'All')) + '] [Shuffle: '+(this.shuffle?'On':'Off') +']:\n\n'+mystr}
 
         let loop = (playmsg)=>{
             playmsg.channel.awaitMessages(m=>m.author.username==message.author.username,{max:1}).then(collected=>{
@@ -256,6 +257,7 @@ export default class MusicGuild{
                 index = 0
             else{
                 MessageFormatter.sendInfo('Play','Fim da Reproducao',message)
+                //todooooo oooo  this.bot.dispatcherEnd()
                 return
             }
         }
@@ -523,7 +525,7 @@ export default class MusicGuild{
                     this.saved_playlists.splice(index,1)
                     this.saved_playlists.splice(index,0,newItem)
                     Logger.log('[Overwriting]Playlist atual exportada como '+name)
-                    MessageFormatter.sendInfo('Export',`${message.member.displayName} sobrescreveu a playlist com o nome de ${name}\n\nDigite ,li para ver a lista delas`,message)
+                    MessageFormatter.sendInfo('Export',`${message.member.displayName} sobrescreveu a playlist com o nome de ${name}\n\nDigite ,li para ver a lista delas`,message,)
                     PersistenceManager.save()
                 },
                 'Nao':()=>{}

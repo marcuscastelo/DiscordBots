@@ -122,8 +122,7 @@ static search(searchKeywords, callback) {
 
         http.get(options, (error, response, body) => {
             if (!error && response.statusCode == 200) {
-                console.dir(body)
-
+                //console.dir(body)//
                 if (body.items.length == 0) {
                     //console.log("Your search gave 0 results");
                     callback('404',null);

@@ -7,6 +7,7 @@ import {
 import PersistenceManager from '../Persistence/persistence-manager.js'
 import Music from './Music/music-commands.js'
 import Logger from '../logger.js'
+import {help as embed} from '../../settings.json'
 
 export default class CommandHandler{
     /**
@@ -40,13 +41,15 @@ export default class CommandHandler{
             }
         }
         else if(commandStr=='shutdown'){
-            message.client.destroy().then(()=>process.exit(0))
+            //message.client.destroy().then(()=>process.exit(0))
         }
         else if (musicMatch){
             Logger.log('Comando de música',4)
             Music.lobby(musicMatch[2],cfrags,message);
         }
-        else
+        else{
+            message.channel.send({embed})
             Logger.warn('Commando Inválido')
+        }
     }
 }
