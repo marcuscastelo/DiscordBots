@@ -306,7 +306,6 @@ export default class MusicGuild{
 
             this.dispatcher.on('start',()=>{
                 Logger.log('Iniciando Reprodução de '+item.videoTitle)
-                this.dispatcher.setVolume(this.volume)
                 this.nowPlaying(message);
             })            
         }
