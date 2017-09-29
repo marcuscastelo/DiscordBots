@@ -290,11 +290,15 @@ export default class MusicGuild{
                     })
                 }
 
-                if (reason=='Stream is not generating quickly enough.'||reason==undefined){
+                if (reason==undefined||reason == 'undefined'){
+                    //this.stream.
+                }
+
+                else if (reason=='Stream is not generating quickly enough.'){
                     if (this.loop==1)
                         this.play(message,this.actualIndex)
                     else
-                        this.play(message,this.actualIndex+1)
+                        this.play(message,this.actualIndex+1)                    
                 }
                 else if(reason=='skip'||reason=='remove'){
                     this.play(message,this.actualIndex+1)
@@ -774,6 +778,7 @@ export default class MusicGuild{
      */
     nowPlaying(message){
         if (!this.dispatcher){
+            Logger.error('777')
             MessageFormatter.sendError('NowPlaying','Nada tocando no momento',message);
             return;
         }

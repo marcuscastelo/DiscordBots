@@ -10,29 +10,29 @@ export default class DiscordClient{
     constructor(){
         Logger.log('Iniciando o bot '+bot_name,0)
         this.bot = new Discord.Client()
-        Logger.log('Definido evento onReady', 3)
+        Logger.log('Definido evento onReady', 4)
         this.bot.on('ready',()=>{
             Logger.log('Evento Ready Chamado', 3)
             PersistenceManager.init(this.bot)
             Logger.log('[Sucesso] Bot funcional',0)
         })
-        Logger.log('Definindo evento onMessage', 3)
+        Logger.log('Definindo evento onMessage', 4)
         this.bot.on('message',message=>{
             if (message.author.bot) return;
             if (message.channel.type == 'dm') return;
             if (!message.channel.name.startsWith('music')) return;
-            Logger.log("Evento OnMessage chamado por "+MessageFormatting.getAuthorName(message), 3)
+            Logger.log(`[${message.guild.name}]: `+"Evento OnMessage chamado por "+MessageFormatting.getAuthorName(message), 3)
             CommandHandler.command(message)
         })
         this.bot.on('guildCreate',guild=>{
             Logger.log("Evento guildCreate chamado em "+guild, 3)
-            Logger.log("Nova guilda: "+guild)
             PersistenceManager.addGuild(guild)
+            Logger.log("Nova guilda: "+guild)
         })
         this.bot.on('guildDelete', guild=>{
             Logger.log("Evento guildDelete chamado em "+guild, 3)
-            Logger.warn('Bot Removido de: '+guild)
             PersistenceManager.removeGuild(guild)
+            Logger.warn('Bot Removido da guilda: '+guild)
         })
         this.bot.on('error',(error)=>{
             console.log(error)
