@@ -20,6 +20,12 @@
 				"videoTitle": "XXXTENTACION - Look At Me! ( A paródia mais autista de todos os tempos)",
 				"addedBy": "bieulw",
 				"duration": 128
+			},
+			{
+				"videoId": "1Vmb_fQtEIw",
+				"videoTitle": "British SAS - World's Most Advanced Unbeatable Special Forces Ever",
+				"addedBy": "Marucs",
+				"duration": 337
 			}
 		],
 		"playlist_src": [],
@@ -27,7 +33,7 @@
 		"volume": 1,
 		"shuffle": false,
 		"loop": 0,
-		"actualIndex": 2,
+		"actualIndex": 0,
 		"prefix": "."
 	},
 	"338148155097088022": {

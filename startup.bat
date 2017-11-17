@@ -1,5 +1,5 @@
 @echo off
 git fetch
 git pull
-cd Shiro
+cd Hanekawa
 call RUN.vbs
