@@ -20,8 +20,473 @@ let userIDs = [
     '264284264475000842', //EU
     '202540947538444288', //Igor
     '254610197010448384', //Jair
-    '163379389164290049'  //Leoi
+    '163379389164290049', //Leoi
+    '308058129231380500'  //Vinão
 ]
+
+let nameToRole = {
+    'Sem Cargo':'264477926999719939',
+    'Vereador':'381128367451275271',
+    'Prefeito':'381128297242820609',
+    'Deputado Estadual':'381127884170854406',
+    'Governador':'381127751224262656',
+    'Deputado Federal':'381127402283204608',
+    'Ministro':'330928554416275457',
+    'Presidente':'380551258836172801'
+}
+
+let roletoDesc = {
+    '264477926999719939':`Sem Cargo:
+
+oficial_chat:
+    +ler
+    +ver histórico
+    +enviar (apenas texto)
+    +emoji (full)
+
++Dando o Cú: Conectar`,
+    '381128367451275271':`Vereador:
+
+oficial_chat:
+    ler
+    ver histórico
+    +enviar (-tts)
+    emoji (full)
+random
+    +ler
+    +ver histórico
+    +enviar (full)
+    +emoji (full)
+music:
+    +ler
+    +ver histórico
+    +enviar (apenas texto)
+downloads:P
+    +ler
+    +ver histórico
+    +enviar (-tts)
+
+Canais de Texto: 
+    +ler
+
+Canais de Voz:
+    +conectar
+    +falar
+    +detecção de voz
+
+Canais de Jogos:
+    +conectar
+    +falar
+    +detecção de voz`,
+    '381128297242820609':`Prefeito:
+
+oficial_chat:
+    ler
+    ver histórico
+    +enviar (full)
+    emoji (full)
+    +convite instantaneo
+random:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    +convite instantaneo
+music:
+    ler
+    ver histórico
+    enviar (apenas texto)
+    +convite instantaneo
+downloads:
+    ler
+    ver histórico
+    enviar (-tts)
+    +convite instantaneo
+
+Canais de Texto: 
+    ler
+    +ver histórico
+    +enviar (-tts)
+    +emoji (full)
+    +convite instantaneo
+
+Canais de Voz: 
+    conectar
+    falar
+    detecção de voz
+    +criar convite instantaneo
+
+Canais de Jogos: 
+    conectar
+    falar
+    detecção de voz
+    +criar convite instantaneo`,
+    '381127884170854406':`Deputado Estadual:
+
++Alterar o próprio apelido no servidor
+
+oficial_chat:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+random:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    +gerenciar mensagens
+music:
+    ler
+    ver histórico
+    enviar (apenas texto)
+    convite instantaneo
+downloads:
+    ler
+    ver histórico
+    enviar (-tts)
+    convite instantaneo
+
+Canais de texto: 
+    ler
+    ver histórico
+    +enviar(full)
+    emoji(full)
+    convite instantaneo
+
+Canais de Voz: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+
+Canais de Jogos: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    +criar
+    +editar visão geral
+    +excluir`,
+    '381127751224262656':`Governador:
+
+Alterar o próprio apelido no servidor
++Mudar apelido de membros com cargos inferiores
++Expulsar membros com cargos inferiores
++Gerenciar emojis do server
+
+oficial_chat:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    +gerenciar mensagens
+    +mencionar todos
+random:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    gerenciar mensagens
+music:
+    ler
+    ver histórico
+    enviar (apenas texto)
+    convite instantaneo
+    +gerenciar mensagens
+downloads:
+    ler
+    ver histórico
+    enviar (-tts)
+    convite instantaneo
+nsfw:
+    +ler
+    +ver histórico
+    +enviar (-tts)
+    +emoji (full)
+    +gerenciar mensagens
+
+Canais de texto: 
+    ler
+    ver histórico
+    enviar(full)
+    emoji(full)
+    convite instantaneo
+    +gerenciar mensagens
+    +criar
+    +editar visão geral
+    +excluir
+
+Canais de Voz: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    +silenciar
+    +ensurdecer
+    +mover
+
+Canais de Jogos: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    criar
+    editar visão geral
+    excluir
+    +silenciar
+    +ensurdecer
+    +mover`,
+    '381127402283204608':`Deputado Federal:
+
+Alterar o próprio apelido no servidor
+Mudar apelido de membros com cargos inferiores
+Expulsar membros com cargos inferiores
+Gerenciar emojis do server
++Dar, remover, editar cargos inferiores ao seu
+
+oficial_chat:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    gerenciar mensagens
+    mencionar todos
+random:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    gerenciar mensagens
+music:
+    ler
+    ver histórico
+    enviar (apenas texto)
+    convite instantaneo
+    gerenciar mensagens
+downloads:
+    ler
+    ver histórico
+    enviar (-tts)
+    convite instantaneo
+nsfw:
+    ler
+    ver histórico
+    enviar (-tts)
+    emoji (full)
+    gerenciar mensagens
+
+Canais de texto: 
+    ler
+    ver histórico
+    enviar(full)
+    emoji(full)
+    convite instantaneo
+    gerenciar mensagens
+    criar
+    editar visão geral
+    excluir
+    +editar permissões
+
+Canais de Voz: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    +criar
+    +editar visão geral
+    +excluir
+    silenciar
+    ensurdecer
+    mover
+
+Canais de Jogos: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    criar
+    editar visão geral
+    excluir
+    silenciar
+    ensurdecer
+    mover
+    +editar permissões`,
+    '330928554416275457':`Ministro & Presidente:
+
+Alterar o próprio apelido no servidor
+Mudar apelido de membros com cargos inferiores
+Expulsar membros com cargos inferiores
+Gerenciar emojis do server
+Dar, remover, editar cargos inferiores ao seu
++Ver Audit Log
++Gerenciar Servidor
++Banir membros
+
+
+oficial_chat:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    gerenciar mensagens
+    mencionar todos
+random:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    gerenciar mensagens
+music:
+    ler
+    ver histórico
+    enviar (apenas texto)
+    convite instantaneo
+    gerenciar mensagens
+downloads:
+    ler
+    ver histórico
+    enviar (-tts)
+    convite instantaneo
+    +gerenciar mensagens
+nsfw:
+    ler
+    ver histórico
+    enviar (-tts)
+    emoji (full)
+    gerenciar mensagens
+
+Canais de texto: 
+    ler
+    ver histórico
+    enviar(full)
+    emoji(full)
+    convite instantaneo
+    gerenciar mensagens
+    criar
+    editar visão geral
+    excluir
+    editar permissões
+    +mencionar todos
+
+Canais de Voz: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    criar
+    editar visão geral
+    excluir
+    silenciar
+    ensurdecer
+    mover
+    +editar permissões
+
+Canais de Jogos: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    criar
+    editar visão geral
+    excluir
+    silenciar
+    ensurdecer
+    mover
+    editar permissões`,
+    '380551258836172801':`Ministro & Presidente:
+
+Alterar o próprio apelido no servidor
+Mudar apelido de membros com cargos inferiores
+Expulsar membros com cargos inferiores
+Gerenciar emojis do server
+Dar, remover, editar cargos inferiores ao seu
++Ver Audit Log
++Gerenciar Servidor
++Banir membros
+
+
+oficial_chat:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    gerenciar mensagens
+    mencionar todos
+random:
+    ler
+    ver histórico
+    enviar (full)
+    emoji (full)
+    convite instantaneo
+    gerenciar mensagens
+music:
+    ler
+    ver histórico
+    enviar (apenas texto)
+    convite instantaneo
+    gerenciar mensagens
+downloads:
+    ler
+    ver histórico
+    enviar (-tts)
+    convite instantaneo
+    +gerenciar mensagens
+nsfw:
+    ler
+    ver histórico
+    enviar (-tts)
+    emoji (full)
+    gerenciar mensagens
+
+Canais de texto: 
+    ler
+    ver histórico
+    enviar(full)
+    emoji(full)
+    convite instantaneo
+    gerenciar mensagens
+    criar
+    editar visão geral
+    excluir
+    editar permissões
+    +mencionar todos
+
+Canais de Voz: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    criar
+    editar visão geral
+    excluir
+    silenciar
+    ensurdecer
+    mover
+    +editar permissões
+
+Canais de Jogos: 
+    conectar
+    falar
+    detecção de voz 
+    criar convite instantaneo
+    criar
+    editar visão geral
+    excluir
+    silenciar
+    ensurdecer
+    mover
+    editar permissões`,
+}
 
 
 let time = 0
@@ -127,36 +592,25 @@ bot.on("message",(message)=>{
             }
         }
     }
-    else if (command == 'prune'){
-         if (params.length>0 && params[0].trim().length>0 && !isNaN(params[0])){
-                    let sec = parseInt(params[0]);
-                    sec = sec>80?800:sec<5?5:sec
-                    message.channel.send('WIP')
-                }
-                else
-                	message.channel.send(`\`\`\`css\nprune <count>\nprune <count> [user]\nprune <count> bot\n\`\`\``)
+    else if (command == 'role'){
+        let role = message.member.highestRole.id
+        message.channel.send(roletoDesc[role])
+    }
+    else if (command == 'roles'){
+        let rolessss = Object.keys(nameToRole)
+        let s = ''
+        for (var i = rolessss.length - 1; i >= 0; i--) {
+            s+=rolessss[i]+'\n'
+        }
+        message.channel.send(s);
     }
     else if (command == 'shutdown'){
-    	bot.destroy()
-    	process.exit(1)
-    	return
+        bot.destroy()
+        process.exit(1)
+        return
     }
-    else if (command == 'tracer'){
-        if (message.member.voiceChannel){
-            let channels = []
-            channels.push(message.member.voiceChannel)
-            setInterval(()=>{
-                bot.syncGuilds([message.guild])
-                if (message.guild.fetchMember(bot.user).voiceConnection)
-                    if (channels.indexOf(message.guild.fetchMember(bot.user).voiceConnection.channel)<0)
-                        channels.push(message.guild.fetchMember(bot.user).voiceConnection)
-                for (let i = 0; i < channels.length; i++){
-                    let joined = false
-                    channels[i].join().then(()=>{joined=true})
-                    while(!joined){console.log('down')}
-                }
-            },1000)
-        }
+    else{
+        message.channel.send("Commands: //edit, //role, //roles, //help")
     }
    	message.delete()
 })

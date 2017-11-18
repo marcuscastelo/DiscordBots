@@ -41,7 +41,7 @@ export default class CommandHandler{
             }
         }
         else if(commandStr=='shutdown'){
-            //message.client.destroy().then(()=>process.exit(0))
+            message.client.destroy().then(()=>process.exit(0))
         }
         else if (musicMatch){
             Logger.log('Comando de música',4)

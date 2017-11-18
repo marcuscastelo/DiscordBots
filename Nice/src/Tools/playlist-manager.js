@@ -190,8 +190,8 @@ export default class PlaylistManager{
     _addVideo(videoId,videoTitle,duration){
         let o = {
             videoId:videoId,
-            videoTitle,videoTitle,
-            addedBy:this.message.member.displayName,
+            videoTitle:StringFormatter.removerAcentos(videoTitle),
+            addedBy:StringFormatter.removerAcentos(this.message.member.displayName),
             duration:StringFormatter.convert_time(duration)
         }
         if (this.musicGuild.shuffle){
