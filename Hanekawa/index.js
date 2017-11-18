@@ -594,6 +594,16 @@ bot.on("message",(message)=>{
     }
     else if (command == 'role'){
         let role = message.member.highestRole.id
+        if (params.length>0){
+            let rolname = params.join(' ')
+            if (rolname in nameToRole){
+                role = nameToRole[rolname]
+            }
+            else{
+                message.channel.send(rolname+" not found")
+                return
+            }
+        }
         message.channel.send(roletoDesc[role])
     }
     else if (command == 'roles'){
