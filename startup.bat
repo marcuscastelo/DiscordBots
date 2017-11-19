@@ -1,5 +1,3 @@
 @echo off
-git fetch
-git pull
-cd Hanekawa
-call RUN.vbs
+call update.bat
+call _runlocal.bat

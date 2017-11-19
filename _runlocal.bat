@@ -1,2 +1,2 @@
 cd Hanekawa
-Run.vbs
+call Run.vbs
