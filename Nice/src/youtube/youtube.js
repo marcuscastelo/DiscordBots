@@ -155,4 +155,28 @@ static search(searchKeywords, callback) {
         return;
     };
 
+    static isLiveStream(videoID, callback){
+        var requestUrl = 'https://www.googleapis.com/youtube/v3/videos' + `?part=snippet,contentDetails&id=${videoId}&key=${API_KEY}`;
+
+            request(requestUrl,(error, response) => {
+                if (!error && response.statusCode == 200) {
+        
+                    var body = response.body;
+                    if (body.items.length == 0) {
+                        //console.log("Your search gave 0 results");
+                        callback(false);
+                        return;
+                    }
+        
+                    for (var item of body.items) {
+                        callback(item.snippet.liveBroadcastContent == 'live');
+                        return;
+                    }
+                }
+                else {
+                    //console.log("Unexpected error when searching YouTube");
+                    return;
+                }
+            });
+    }
 }

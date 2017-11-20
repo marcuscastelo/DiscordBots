@@ -185,7 +185,7 @@ export default class MusicGuild{
                 page = parseInt(frags[0])-1
         }
 
-        if (!this.playlist || !this.playlist.length>0){
+        if (!this.playlist || this.playlist.length<=0){
             MessageFormatter.sendInfo('Queue','Playlist vazia',message)
             return
         }
@@ -224,7 +224,7 @@ export default class MusicGuild{
                         let exib = getHeader(pages[page])
                         playmsg.edit(exib.substr(0,exib.length-46))
                         return;
-                    };
+                    }
                     page = page<0?0:(page>=pages.length?pages.length-1:page)
                     playmsg.edit(getHeader(pages[page]))
                     loop(playmsg)
@@ -275,10 +275,11 @@ export default class MusicGuild{
 
             //console.log(this.playlist[0].videoId)
 
-            this.stream = ytdl(youtube.watchVideoUrl+this.playlist[index].videoId,{filter:'audioonly'})
+            this.stream = ytdl(youtube.watchVideoUrl+this.playlist[index].videoId)
             this.actualIndex = index
             let item = this.playlist[index]
             let durStr = StringFormatter.formatTime(item.duration,2)
+
             this.voiceConnection.playStream(this.stream,{volume:this.volume}).on('end',reason=>{
                 Logger.log('Fim da transmissão: '+item.videoTitle+" reason: "+reason)
 
@@ -585,7 +586,7 @@ export default class MusicGuild{
                         page = page<0?0:(page>=pages.length?pages.length-1:page)
                         playmsg.edit(pages[page].substr(0,pages[page].length-46))
                         return;
-                    };
+                    }
                     page = page<0?0:(page>=pages.length?pages.length-1:page)
                     playmsg.edit(pages[page])
                     loop(playmsg)

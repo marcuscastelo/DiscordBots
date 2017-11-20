@@ -131,7 +131,7 @@ export default class PlaylistManager{
      */
     addYTID(message,ID){
         this.message = message
-        youtube.addById(ID,(a,b,c)=>{this.addSingleVideo(a,b,c)})
+        youtube.addById(ID,(id,title,duration)=>{this.addSingleVideo(id,title,duration)})
     }
 
      /**
