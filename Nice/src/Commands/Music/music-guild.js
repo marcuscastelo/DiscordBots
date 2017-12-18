@@ -291,8 +291,9 @@ export default class MusicGuild{
                     })
                 }
 
-                if (reason==undefined||reason == 'undefined'){
+                if (reason===undefined||reason === 'undefined'){
                     //this.stream.
+                    Logger.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa === undefined')
                 }
 
                 else if (reason=='Stream is not generating quickly enough.'){
@@ -302,7 +303,9 @@ export default class MusicGuild{
                         this.play(message,this.actualIndex+1)                    
                 }
                 else if(reason=='skip'||reason=='remove'){
-                    this.play(message,this.actualIndex+1)
+                	Logger.log('a')
+                	setTimeout(()=>this.play(message,this.actualIndex+1),1)
+                    Logger.log('b')
                 }
                 else if (reason=='replay'){
                     this.play(message,this.actualIndex)
@@ -374,7 +377,9 @@ export default class MusicGuild{
             let music = this.playlist[this.actualIndex]
             Logger.log(`[${message.guild}]: ${message.member.displayName} Pulou a música atual: [${music.videoTitle}]`)
             MessageFormatter.sendInfo('Skip',`${message.member.displayName} pulou a musica:\n #${this.actualIndex+1}. [${music.videoTitle}] - Adicionada por #${message.member.displayName}`,message,0)
+            Logger.log('1')
             this.dispatcher.end('skip')
+            Logger.log('2')
         }
         else{
             Logger.log(`[${message.guild}]: Skip-> Nada tocando`,3,true)
