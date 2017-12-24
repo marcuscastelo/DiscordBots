@@ -7,6 +7,7 @@ import {
 import PersistenceManager from '../Persistence/persistence-manager.js'
 import Music from './Music/music-commands.js'
 import Logger from '../logger.js'
+import {bot_name} from '../../settings.json'
 import {help as embed} from '../../settings.json'
 
 export default class CommandHandler{
@@ -19,14 +20,24 @@ export default class CommandHandler{
         let data = PersistenceManager.getData(message.guild)
         let prefix = data.prefix
         Logger.log('Prefixo = '+prefix,5)
-        if (message.content.indexOf(prefix)!=0){
+
+        let cfrags = ''
+        if (message.cleanContent.startsWith('@'+bot_name)){
+			cfrags = message.cleanContent.substr(bot_name.length+1).trim().split(' ')
+        }
+        else if (message.content.indexOf(prefix)!=0){
             Logger.log('Mensagem não possui o prefixo, ignorando',4)
             return
         }
- 
+        else {
+        	cfrags = message.content.substr(prefix.length).trim().split(' ')
+        }
+ 		
+       	console.log(bot_name)
+
         Logger.log(`[${message.guild}] Comando Recebido de ${message.member.displayName}: ${message.content}`)
-        let cfrags = message.content.substr(prefix.length).trim().split(' ')
-        let command = cfrags.splice(0,1)[0]
+        
+        let command = cfrags.splice(0,1)[0].replace('/\s/g','')
         Logger.log(`Parametros do comando: "${cfrags}"`,5)
         Logger.log('Separando tipo de comando',4)
         let musicMatch = command.match(/(?:^)((j|lo|li|l|a|rp|r|c|e|i|pl|sh|v|p|st|q|d|sk|b|np|now).*)(?:$)/)
@@ -41,9 +52,9 @@ export default class CommandHandler{
             }
         }
         else if(commandStr=='shutdown'){
-            //message.client.destroy().then(()=>process.exit(0))
+            message.client.destroy().then(()=>process.exit(0))
         }
-        else if (musicMatch){
+        else if (musicMatch && musicMatch.length > 1){
             Logger.log('Comando de música',4)
             Music.lobby(musicMatch[2],cfrags,message);
         }

@@ -24,7 +24,7 @@ export default function getTracks(playlistUrl){
 			Logger.log('Resposta obtida',4)
 			if (!error && response.statusCode === 200) {
 				Logger.log('Cod 200 OK',4)
-				let playlistMach = playlistUrl.match(/(?:user\/|spotify:user:)(.+)(?:\/playlist\/|:playlist:)(.+)/)
+				let playlistMach = playlistUrl.match(/(?:user\/|spotify:user:)(.+)(?:\/playlist\/|:playlist:)(.+)(?:\?)/)
 				Logger.log('urlMach: '+playlistMach,5)
 				let userId = playlistMach[1]
 				Logger.log('userId: '+userId,5)

@@ -40,7 +40,7 @@ let delRole = null
 
 function isBotOffline(id){
     return new Promise((res,rej)=>{
-        bot.users.fetch(id).then(user=>{
+        bot.fetchUser(id).then(user=>{
             if (user.presence.status!='online') res(user.username)
             else rej(user.username)
         })
@@ -50,7 +50,7 @@ function isBotOffline(id){
 function startBot(name){
     console.log('starting '+name)
     process.chdir('..\\'+name+'\\')
-    child_process.spawn('run.bat')
+    child_process.spawn('Run.vbs')
 }
 
 bot.on('ready',()=>{
@@ -110,11 +110,10 @@ function removeUselessRoles() {
 }
 
 bot.on('channelDelete', ()=> {
-    removeUselessRoles();
+    //removeUselessRoles();
 })
-
+/*
 bot.on('channelCreate', channel => {
-
     if (channel.type == 'dm' ||
         channel.type == 'group')
     {
@@ -168,7 +167,7 @@ bot.on('guildCreate', guild => {
     if (guild.id !== astroid)
     guild.leave();
 })
-
+*/
 bot.on("message",(message)=>{
     if (message.author == bot.user ||
         message.channel == message.author.dmChannel||

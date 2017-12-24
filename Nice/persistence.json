@@ -4,73 +4,20 @@
 		"name": "Vila Oculta da Folha",
 		"playlist": [
 			{
-				"videoId": "74gx0v5ZJzw",
-				"videoTitle": "Camila Cabello - Havana ( cover by Donald Trump )",
-				"addedBy": "マルコ",
-				"duration": 153
-			},
-			{
-				"videoId": "mb-XCaA2HZs",
-				"videoTitle": "Rick and Morty - Evil Morty Theme Song (Trap Remix)",
-				"addedBy": "マルコ",
-				"duration": 158
-			},
+				"videoId": "3nx7_G5R0oA",
+				"videoTitle": "Trump Sings All I Want For Christmas Is You by Mariah Carey",
+				"addedBy": "Negao",
+				"duration": 113
+			}
+		],
+		"playlist_src": [
 			{
 				"videoId": "3nx7_G5R0oA",
 				"videoTitle": "Trump Sings All I Want For Christmas Is You by Mariah Carey",
 				"addedBy": "Negao",
 				"duration": 113
-			},
-			{
-				"videoId": "74gx0v5ZJzw",
-				"videoTitle": "Camila Cabello - Havana ( cover by Donald Trump )",
-				"addedBy": "Negao",
-				"duration": 153
-			},
-			{
-				"videoId": "on9UFsxdC0Q",
-				"videoTitle": "Trump Sings New Rules by Dua Lipa /NOW ON iTUNES",
-				"addedBy": "Negao",
-				"duration": 167
-			},
-			{
-				"videoId": "on9UFsxdC0Q",
-				"videoTitle": "Trump Sings New Rules by Dua Lipa /NOW ON iTUNES",
-				"addedBy": "Negao",
-				"duration": 167
-			},
-			{
-				"videoId": "bmhbqKT7ONo",
-				"videoTitle": "Barack Obama Singing Shape of You by Ed Sheeran (VERSION AUTO TUNE) NOW ON iTUNES",
-				"addedBy": "Negao",
-				"duration": 164
-			},
-			{
-				"videoId": "FTQbiNvZqaY",
-				"videoTitle": "Toto - Africa (Video)",
-				"addedBy": "vinao",
-				"duration": 275
-			},
-			{
-				"videoId": "p-N_y1bZtRw",
-				"videoTitle": "STARSET - My Demons (OFFICIAL)",
-				"addedBy": "マルコ",
-				"duration": 230
-			},
-			{
-				"videoId": "7UevOcNzMck",
-				"videoTitle": "『Paradisus-Paradoxum』 Full ／リゼロ OP 2",
-				"addedBy": "レオイ",
-				"duration": 234
-			},
-			{
-				"videoId": "EV4Tc014Hek",
-				"videoTitle": "Re:Zero Kara Hajimeru Isekai Seikatsu OP Full (Link in description)",
-				"addedBy": "レオイ",
-				"duration": 259
 			}
 		],
-		"playlist_src": [],
 		"saved_playlists": [
 			{
 				"name": "anime",
@@ -1153,10 +1100,10 @@
 				]
 			}
 		],
-		"volume": 0.2,
-		"shuffle": false,
+		"volume": 0,
+		"shuffle": true,
 		"loop": 0,
-		"actualIndex": 10,
+		"actualIndex": 0,
 		"prefix": ","
 	},
 	"338148155097088022": {

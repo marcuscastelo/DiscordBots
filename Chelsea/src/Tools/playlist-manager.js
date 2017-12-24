@@ -104,10 +104,8 @@ export default class PlaylistManager{
                 MessageFormatter.sendError('Add','Nenhum resultado no youtube para: '+search,message)
             }
             else if(videoId != 'end'){
-                console.log('1')
                 this.lastSearch--;
             	youtube.addById(videoId, (id,title,duration) => {
-                    console.log('2')
                     this.lastSearch++;
             		sresult[videoId] = {}
                 	sresult[videoId].callback = ()=>{
@@ -116,7 +114,6 @@ export default class PlaylistManager{
                     sresult[videoId].text = videoTitle + ' [' + StringFormatter.formatTime(StringFormatter.convert_time(duration)) + ']'
                     if (this.lastSearch == 0) 
                     {
-                        console.log('3')
                         MessageFormatter.makeSelectFromMessage(message.author,'Adicionar qual desses:',sresult).send(message.channel)
                     }
             	})
@@ -134,7 +131,7 @@ export default class PlaylistManager{
      */
     addYTID(message,ID){
         this.message = message
-        youtube.addById(ID,(a,b,c)=>{this.addSingleVideo(a,b,c)})
+        youtube.addById(ID,(id,title,duration)=>{this.addSingleVideo(id,title,duration)})
     }
 
      /**
@@ -193,8 +190,8 @@ export default class PlaylistManager{
     _addVideo(videoId,videoTitle,duration){
         let o = {
             videoId:videoId,
-            videoTitle,videoTitle,
-            addedBy:this.message.member.displayName,
+            videoTitle:StringFormatter.removerAcentos(videoTitle),
+            addedBy:StringFormatter.removerAcentos(this.message.member.displayName),
             duration:StringFormatter.convert_time(duration)
         }
         if (this.musicGuild.shuffle){

@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "babel": "cd src && babel-node app.js",
+    "babel": "call build.bat",
     "babel-debug": "cd src && nodemon --exec babel-node app.js --inspect"
   },
   "keywords": [],

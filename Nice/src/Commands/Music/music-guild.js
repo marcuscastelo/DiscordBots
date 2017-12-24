@@ -275,7 +275,7 @@ export default class MusicGuild{
 
             //console.log(this.playlist[0].videoId)
 
-            this.stream = ytdl(youtube.watchVideoUrl+this.playlist[index].videoId)
+            this.stream = ytdl(youtube.watchVideoUrl+this.playlist[index].videoId, { filter:'audioonly', quality: 'highest' } )
             this.actualIndex = index
             let item = this.playlist[index]
             let durStr = StringFormatter.formatTime(item.duration,2)

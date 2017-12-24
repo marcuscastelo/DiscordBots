@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import {Guild, Message} from 'discord.js'
 import PersistenceManager from '../../Persistence/persistence-manager.js'
 import Logger from '../../logger.js'
@@ -184,7 +185,7 @@ export default class MusicGuild{
                 page = parseInt(frags[0])-1
         }
 
-        if (!this.playlist || !this.playlist.length>0){
+        if (!this.playlist || this.playlist.length<=0){
             MessageFormatter.sendInfo('Queue','Playlist vazia',message)
             return
         }
@@ -223,7 +224,7 @@ export default class MusicGuild{
                         let exib = getHeader(pages[page])
                         playmsg.edit(exib.substr(0,exib.length-46))
                         return;
-                    };
+                    }
                     page = page<0?0:(page>=pages.length?pages.length-1:page)
                     playmsg.edit(getHeader(pages[page]))
                     loop(playmsg)
@@ -274,10 +275,11 @@ export default class MusicGuild{
 
             //console.log(this.playlist[0].videoId)
 
-            this.stream = ytdl(youtube.watchVideoUrl+this.playlist[index].videoId,{filter:'audioonly'})
+            this.stream = ytdl(youtube.watchVideoUrl+this.playlist[index].videoId, { filter:'audioonly', quality: 'highest' } )
             this.actualIndex = index
             let item = this.playlist[index]
             let durStr = StringFormatter.formatTime(item.duration,2)
+
             this.voiceConnection.playStream(this.stream,{volume:this.volume}).on('end',reason=>{
                 Logger.log('Fim da transmissão: '+item.videoTitle+" reason: "+reason)
 
@@ -289,14 +291,21 @@ export default class MusicGuild{
                     })
                 }
 
-                if (reason=='Stream is not generating quickly enough.'||reason==undefined){
+                if (reason===undefined||reason === 'undefined'){
+                    //this.stream.
+                    Logger.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa === undefined')
+                }
+
+                else if (reason=='Stream is not generating quickly enough.'){
                     if (this.loop==1)
                         this.play(message,this.actualIndex)
                     else
-                        this.play(message,this.actualIndex+1)
+                        this.play(message,this.actualIndex+1)                    
                 }
                 else if(reason=='skip'||reason=='remove'){
-                    this.play(message,this.actualIndex+1)
+                	Logger.log('a')
+                	setTimeout(()=>this.play(message,this.actualIndex+1),1)
+                    Logger.log('b')
                 }
                 else if (reason=='replay'){
                     this.play(message,this.actualIndex)
@@ -305,7 +314,6 @@ export default class MusicGuild{
 
             this.dispatcher.on('start',()=>{
                 Logger.log('Iniciando Reprodução de '+item.videoTitle)
-                this.dispatcher.setVolume(this.volume)
                 this.nowPlaying(message);
             })            
         }
@@ -369,7 +377,9 @@ export default class MusicGuild{
             let music = this.playlist[this.actualIndex]
             Logger.log(`[${message.guild}]: ${message.member.displayName} Pulou a música atual: [${music.videoTitle}]`)
             MessageFormatter.sendInfo('Skip',`${message.member.displayName} pulou a musica:\n #${this.actualIndex+1}. [${music.videoTitle}] - Adicionada por #${message.member.displayName}`,message,0)
+            Logger.log('1')
             this.dispatcher.end('skip')
+            Logger.log('2')
         }
         else{
             Logger.log(`[${message.guild}]: Skip-> Nada tocando`,3,true)
@@ -511,10 +521,10 @@ export default class MusicGuild{
         }
 
         let newItem = {
-                name:name,
-                addedBy:message.member.displayName,
-                playlist:this.playlist.slice()
-            }
+            name:name,
+            addedBy:message.member.displayName,
+            playlist:this.playlist.slice()
+        }
 
         let existItem = this.saved_playlists.find(item=>item.name==name)
         if (existItem){
@@ -525,7 +535,7 @@ export default class MusicGuild{
                     this.saved_playlists.splice(index,1)
                     this.saved_playlists.splice(index,0,newItem)
                     Logger.log('[Overwriting]Playlist atual exportada como '+name)
-                    MessageFormatter.sendInfo('Export',`${message.member.displayName} sobrescreveu a playlist com o nome de ${name}\n\nDigite ,li para ver a lista delas`,message,)
+                    MessageFormatter.sendInfo('Export',`${message.member.displayName} sobrescreveu a playlist com o nome de ${name}\n\nDigite ,li para ver a lista delas`,message,0)
                     PersistenceManager.save()
                 },
                 'Nao':()=>{}
@@ -534,7 +544,7 @@ export default class MusicGuild{
         else{
             this.saved_playlists.push(newItem)
             Logger.log('Playlist atual exportada como '+name)
-            MessageFormatter.sendInfo('Export',`${message.member.displayName} exportou a playlist atual como: ${name}\n\nDigite ,li para ver a lista delas`,message)
+            MessageFormatter.sendInfo('Export',`${message.member.displayName} exportou a playlist atual como: ${name}\n\nDigite ,li para ver a lista delas`,message,0)
             PersistenceManager.save()
         }
         
@@ -581,7 +591,7 @@ export default class MusicGuild{
                         page = page<0?0:(page>=pages.length?pages.length-1:page)
                         playmsg.edit(pages[page].substr(0,pages[page].length-46))
                         return;
-                    };
+                    }
                     page = page<0?0:(page>=pages.length?pages.length-1:page)
                     playmsg.edit(pages[page])
                     loop(playmsg)
@@ -774,6 +784,7 @@ export default class MusicGuild{
      */
     nowPlaying(message){
         if (!this.dispatcher){
+            Logger.error('777')
             MessageFormatter.sendError('NowPlaying','Nada tocando no momento',message);
             return;
         }
