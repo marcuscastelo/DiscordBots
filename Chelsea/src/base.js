@@ -3,6 +3,7 @@ import {token,bot_name} from '../settings.json'
 import PersistenceManager from './Persistence/persistence-manager.js'
 import MessageFormatting from './tools/message-formatting.js'
 import CommandHandler from './Commands/command-handler.js'
+import {default_prefix} from '../settings.json'
 import fs from 'fs'
 import Logger from './logger.js'
 
@@ -14,6 +15,7 @@ export default class DiscordClient{
         this.bot.on('ready',()=>{
             Logger.log('Evento Ready Chamado', 3)
             PersistenceManager.init(this.bot)
+            this.bot.user.setPresence({status:'online', game:{name:`${default_prefix}h for help`}})
             Logger.log('[Sucesso] Bot funcional',0)
         })
         Logger.log('Definindo evento onMessage', 4)

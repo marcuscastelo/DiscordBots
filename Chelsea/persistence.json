@@ -4,20 +4,19 @@
 		"name": "Vila Oculta da Folha",
 		"playlist": [
 			{
-				"videoId": "GXFSK0ogeg4",
-				"videoTitle": "Carl Orff - O Fortuna ~ Carmina Burana",
+				"videoId": "7nQ2oiVqKHw",
+				"videoTitle": "Microsoft Windows XP Startup Sound",
 				"addedBy": "マルコ",
-				"duration": 322
-			}
-		],
-		"playlist_src": [
+				"duration": 5
+			},
 			{
-				"videoId": "GXFSK0ogeg4",
-				"videoTitle": "Carl Orff - O Fortuna ~ Carmina Burana",
+				"videoId": "bPzDW460I1U",
+				"videoTitle": "[MV] ZAQ - Seven Doors Lyric + Terjemahan Indonesia",
 				"addedBy": "マルコ",
-				"duration": 322
+				"duration": 244
 			}
 		],
+		"playlist_src": [],
 		"saved_playlists": [
 			{
 				"name": "anime",
@@ -1100,10 +1099,10 @@
 				]
 			}
 		],
-		"volume": 0.1,
-		"shuffle": true,
+		"volume": 0.05,
+		"shuffle": false,
 		"loop": 0,
-		"actualIndex": 0,
+		"actualIndex": 1,
 		"prefix": "."
 	},
 	"338148155097088022": {

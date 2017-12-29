@@ -78,6 +78,9 @@ export default class MusicCommandHandler{
             case 'now':
                 musicGuild.nowPlaying(message);
             break;
+            case 'b':
+                musicGuild.back(message);
+            break;
             default:
                 Logger.warn(`Comando de música ainda não implementado [${command}]`)
                 MessageFormatter.sendMessage('Em Breve!',message)
