@@ -19,7 +19,7 @@
     		},
     		{
 	      		"name": "Funções Ocultas",
-		      	"value": "[,add]() -> Se o bot já estiver em um canal, dá play após adicionar\n[,play]()-> Se o bot não estiver em nenhum canal, ele tenta se juntar\n[,back]()/[,skip]() -> Se o loop estiver em all, ele da a volta\n[,Q]()(maiúsculo) -> Exibe a playlist inteira\n[,remove]() -> é possível estabelecer um range (ex: ,r 10-15)\n[,remove]() -> no range a letra n é o fim da playlist (ex: ,r 3-n) apaga td depois do 2"
+		      	"value": "[,add]() -> Se o bot já estiver em um canal, dá play após adicionar\n[,play]()-> Se o bot não estiver em nenhum canal, ele tenta se juntar\n[,back]()/[,skip]() -> Se o loop estiver em all, ele da a volta\n[,remove]() -> é possível estabelecer um range (ex: ,r 10-15)\n[,remove]() -> no range a letra n é o fim da playlist (ex: ,r 3-n) apaga td depois do 2"
     		}
   		]
 	}
