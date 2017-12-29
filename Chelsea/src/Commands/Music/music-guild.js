@@ -8,7 +8,6 @@ import PlaylistManager from '../../Tools/playlist-manager.js'
 import StringFormatter from '../../Tools/string-formatting.js'
 import ytdl from 'ytdl-core'
 import shuffle from 'shuffle-array'
-import { read } from 'fs';
 
 let guilds = {}
 export default class MusicGuild{
