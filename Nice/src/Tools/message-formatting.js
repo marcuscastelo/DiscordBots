@@ -1,6 +1,7 @@
 import moment from 'moment'
 import {TextChannel, Message, User} from 'discord.js'
 import Logger from '../logger.js'
+import StringFormatter from './string-formatting';
 
 export class PMessage{
     
@@ -43,7 +44,7 @@ export default class MessageFormatter{
      * @param {Message|TextChannel} ctx 
      * @param {number} delTime 
      */
-    static sendMessage(text,ctx,delTime=0,callback=undefined){
+    static sendMessage(_text,ctx,delTime=0,callback=undefined){
         let channel = ctx
         if (ctx instanceof Message)
             channel = ctx.channel
@@ -59,6 +60,8 @@ export default class MessageFormatter{
                     m.delete(delTime).catch((reason)=>Logger.error(reason))
             }
         }
+
+        let text = StringFormatter.removerAcentos(_text)
 
         channel.send(text).then(action).catch(err=>{
             if (err){

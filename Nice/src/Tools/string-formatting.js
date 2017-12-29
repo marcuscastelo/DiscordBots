@@ -3,13 +3,15 @@ export default class StringFormatter{
     static removerAcentos( newStringComAcento ) {
         var string = newStringComAcento;
         var mapaAcentosHex  = {
-            a : /[\xE0-\xE6]/g,
-            e : /[\xE8-\xEB]/g,
-            i : /[\xEC-\xEF]/g,
-            o : /[\xF2-\xF6]/g,
-            u : /[\xF9-\xFC]/g,
-            c : /\xE7/g,
-            n : /\xF1/g
+            a : /[\xE0-\xE6]/gm,
+            e : /[\xE8-\xEB]/gm,
+            i : /[\xEC-\xEF]/gm,
+            o : /[\xF2-\xF6]/gm,
+            u : /[\xF9-\xFC]/gm,
+            c : /\xE7/gm,
+            n : /\xF1/gm,
+            ' ' : /\@/gm,
+            ' ' : /(?:\[)([\[\]]+)(?:])/gm
         };
 
         for ( var letra in mapaAcentosHex ) {

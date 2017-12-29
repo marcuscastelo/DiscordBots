@@ -75,7 +75,7 @@ export default class MusicGuild{
                 Logger.log(`[${message.guild}]: Joining found voice channel: ${foundChannel.name}`)
             }
             else
-                message.reply('42 todo:not found')
+               MessageFormatter.sendError('Join','Canal não encontrado!',message)
         }
         else{
             if (message.member.voiceChannel)
@@ -94,9 +94,9 @@ export default class MusicGuild{
                     }
                 }
                 else
-                    message.reply('49 todo:lack permission join')
+                    MessageFormatter.sendError('Join','Não tenho permissão para entrar no canal',message)
             else
-                message.reply('51 todo:user not in a voice channel')
+                MessageFormatter.sendError('Join', 'Voce não esta em um canal de voz')
         }
         return this;
     }
@@ -135,6 +135,12 @@ export default class MusicGuild{
             let ytPlaylistID
 
             let spotifyPlaylistMatch = input.match(/(?:user\/|spotify:user:)(.+)(?:\/playlist\/|:playlist:)(.+)/)
+            let spotifyTrackMatch = input.match(/track\/([^\?]*)/)
+
+            if (spotifyTrackMatch && spotifyTrackMatch.length >= 2){
+                this.playlistManager.addSpotifyTrack(message,spotifyTrackMatch[1])
+                return;
+            }
 
             if (spotifyPlaylistMatch&&spotifyPlaylistMatch.length==3){
                 this.playlistManager.addSpotifyList(message,input)
@@ -303,9 +309,10 @@ export default class MusicGuild{
                         this.play(message,this.actualIndex+1)                    
                 }
                 else if(reason=='skip'||reason=='remove'){
-                	Logger.log('a')
-                	setTimeout(()=>this.play(message,this.actualIndex+1),1)
-                    Logger.log('b')
+                    setTimeout(()=>this.play(message,this.actualIndex+1),1)
+                }
+                else if(reason === 'back'){
+                    setTimeout(()=>this.play(message,this.actualIndex-1),1)
                 }
                 else if (reason=='replay'){
                     this.play(message,this.actualIndex)
@@ -377,9 +384,7 @@ export default class MusicGuild{
             let music = this.playlist[this.actualIndex]
             Logger.log(`[${message.guild}]: ${message.member.displayName} Pulou a música atual: [${music.videoTitle}]`)
             MessageFormatter.sendInfo('Skip',`${message.member.displayName} pulou a musica:\n #${this.actualIndex+1}. [${music.videoTitle}] - Adicionada por #${message.member.displayName}`,message,0)
-            Logger.log('1')
             this.dispatcher.end('skip')
-            Logger.log('2')
         }
         else{
             Logger.log(`[${message.guild}]: Skip-> Nada tocando`,3,true)
@@ -469,22 +474,23 @@ export default class MusicGuild{
         if (this.dispatcher)
             this.dispatcher.end('stop')
         else
-            message.reply('387 todo:nadatocando')
-    }
+            MessageFormatter.sendError('Stop','Impossível parar a reprodução, nada tocando no momento', message)
+}
 
     /**
      * 
      * @param {Message} message 
      */
     pause(message){
-        if (this.dispatcher)
+        if (this.dispatcher){
             if (this.dispatcher.paused){
                 this.dispatcher.resume()
             }
             else {
                 this.dispatcher.pause()
             }
-        else message.reply('402 todo:nadatocando')
+        }
+        else MessageFormatter.sendError('Pause','Nada tocando no momento, voce realmente queria usar o comando de pausa?', message, 10000)
     }
 
     /**
@@ -827,6 +833,24 @@ export default class MusicGuild{
                         pm.edit(`\`\`\`css\n[NowPlaying] Info: Tocando agora: [Loop: ${mg.loop==0?'Off':(mg.loop==1?'One':'All')}] - [Shuffle: ${mg.shuffle?'On':'Off'}]\n#${index+1}. ${item.videoTitle} - Adicionada por #${item.addedBy}\n${progressBar}\n[${pt}/${durStr}]\`\`\``).then(m=>edited=true)
             },1500)
         })
+    }
+
+    /**
+     * 
+     * @param {Message} message 
+     */
+    back(message) {
+        Logger.log('Comando Skip',3)
+        if (this.dispatcher){
+            let music = this.playlist[this.actualIndex]
+            Logger.log(`[${message.guild}]: ${message.member.displayName} Voltou a música atual: [${music.videoTitle}]`)
+            MessageFormatter.sendInfo('Back',`${message.member.displayName} voltou a musica:\n #${this.actualIndex+1}. [${music.videoTitle}] - Adicionada por #${message.member.displayName}`,message,0)
+            this.dispatcher.end('back')
+        }
+        else{
+            Logger.log(`[${message.guild}]: Back -> Nada tocando`,3,true)
+            MessageFormatter.sendError('Back','Nada tocando no momento',message)
+        }
     }
 
 }

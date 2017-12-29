@@ -32,8 +32,6 @@ export default class CommandHandler{
         else {
         	cfrags = message.content.substr(prefix.length).trim().split(' ')
         }
- 		
-       	console.log(bot_name)
 
         Logger.log(`[${message.guild}] Comando Recebido de ${message.member.displayName}: ${message.content}`)
         
@@ -49,6 +47,7 @@ export default class CommandHandler{
             if (cfrags.length>0){
                 PersistenceManager.set_prefix(message.guild,cfrags[0])
                 message.reply('new prefix! = ' +cfrags[0])
+                message.client.user.setPresence({status:'online', game:{name:`${data.prefix}help`}})
             }
         }
         else if(commandStr=='shutdown'){
