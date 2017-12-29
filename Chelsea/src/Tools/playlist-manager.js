@@ -7,6 +7,8 @@ import Logger from '../logger.js'
 import StringFormatter from '../Tools/string-formatting.js'
 import ytdl from 'ytdl-core'
 import getSpotifyTracks from '../spotify/get-playlist-tracks'
+import getSpotifyTrack from '../spotify/get-track-name'
+import getTrack from '../spotify/get-track-name.js';
 
 export default class PlaylistManager{
     /**
@@ -19,6 +21,18 @@ export default class PlaylistManager{
 
     get playlist() {return this.musicGuild.playlist}
     get playlist_src() {return this.musicGuild.playlist_src}
+
+    /**
+     * 
+     * @param {Message} message 
+     * @param {String} trackID 
+     */
+    addSpotifyTrack(message,trackID) {
+        this.message = message
+        getTrack(trackID).catch((e,r)=>{
+            console.log(e+'\n-\n'+r)
+        }).then(trackName=> this.addYTSearch(message, trackName))
+    }
 
     /**
      * 
@@ -111,7 +125,7 @@ export default class PlaylistManager{
                 	sresult[videoId].callback = ()=>{
 	                    this.addSingleVideo(id,title,duration)
                 	}
-                    sresult[videoId].text = videoTitle + ' [' + StringFormatter.formatTime(StringFormatter.convert_time(duration)) + ']'
+                    sresult[videoId].text = `[${videoTitle}] ` + ' [' + StringFormatter.formatTime(StringFormatter.convert_time(duration)) + ']'
                     if (this.lastSearch == 0) 
                     {
                         MessageFormatter.makeSelectFromMessage(message.author,'Adicionar qual desses:',sresult).send(message.channel)

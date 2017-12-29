@@ -8,6 +8,7 @@ import PlaylistManager from '../../Tools/playlist-manager.js'
 import StringFormatter from '../../Tools/string-formatting.js'
 import ytdl from 'ytdl-core'
 import shuffle from 'shuffle-array'
+import { read } from 'fs';
 
 let guilds = {}
 export default class MusicGuild{
@@ -135,6 +136,12 @@ export default class MusicGuild{
             let ytPlaylistID
 
             let spotifyPlaylistMatch = input.match(/(?:user\/|spotify:user:)(.+)(?:\/playlist\/|:playlist:)(.+)/)
+            let spotifyTrackMatch = input.match(/track\/([^\?]*)/)
+
+            if (spotifyTrackMatch && spotifyTrackMatch.length >= 2){
+                this.playlistManager.addSpotifyTrack(message,spotifyTrackMatch[1])
+                return;
+            }
 
             if (spotifyPlaylistMatch&&spotifyPlaylistMatch.length==3){
                 this.playlistManager.addSpotifyList(message,input)
